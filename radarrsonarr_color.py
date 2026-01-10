@@ -294,12 +294,12 @@ def process_image(image_url, title, overview, genre, year, rating, custom_text, 
         draw.text((custom_pos[0] + shadow_offset, custom_pos[1] + shadow_offset), custom_text, font=font_custom, fill="black")
         draw.text(custom_pos, custom_text, font=font_custom, fill="white")
 
-        # --- Paste static Plex logo ---
-        plexlogo_path = os.path.join(os.path.dirname(__file__), "plexlogo.png")
-        if os.path.exists(plexlogo_path):
-            plexlogo = Image.open(plexlogo_path).convert("RGBA")
+        # --- Paste static radarr_sonaar logo ---
+        radarr_sonaarlogo_path = os.path.join(os.path.dirname(__file__), RADARR_SONARR_LOGO)
+        if os.path.exists(radarr_sonaarlogo_path):
+            radarr_sonaarlogo = Image.open(radarr_sonaarlogo_path).convert("RGBA")
             logo_position = (970, 890) if is_movie else (1010, 890)
-            bckg.paste(plexlogo, logo_position, plexlogo)
+            bckg.paste(radarr_sonaarlogo, logo_position, radarr_sonaarlogo)
 
         # --- Save final image ---
         filename = os.path.join(background_dir, f"{clean_filename(title)}.jpg")
