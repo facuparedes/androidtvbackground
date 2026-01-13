@@ -17,7 +17,7 @@ load_dotenv()
 
 TMDB_BEARER_TOKEN = os.getenv('TMDB_BEARER_TOKEN')
 TMDB_BASE_URL = os.getenv('TMDB_BASE_URL', 'https://api.tmdb.org/3')
-GITHUB_PAGES_URL = os.getenv("GITHUB_PAGES_URL", "").rstrip('/')
+PAGES_GITHUB_URL = os.getenv("PAGES_GITHUB_URL", "").rstrip('/')
 LANGUAGE = os.getenv("TMDB_LANGUAGE", "en-US")
 NUMBER_OF_MOVIES = int(os.getenv("TMDB_NUMBER_OF_MOVIES", "5"))
 NUMBER_OF_TVSHOWS = int(os.getenv("TMDB_NUMBER_OF_TVSHOWS", "5"))
@@ -302,7 +302,7 @@ def process_media(item, media_type, genres_map):
     f_img = os.path.join(BACKGROUND_DIR, f"{clean_title}.jpg")
     f_vid = os.path.join(BACKGROUND_DIR, f"{clean_title}.mp4")
     
-    base = GITHUB_PAGES_URL if GITHUB_PAGES_URL else "."
+    base = PAGES_GITHUB_URL if PAGES_GITHUB_URL else "."
     json_data = {
         "location": "TMDB",
         "title": name,

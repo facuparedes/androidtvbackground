@@ -32,13 +32,47 @@ jobs:
 
       - name: Run TMDB Color Script
         env:
+          # API Configuration
           TMDB_BEARER_TOKEN: ${{ secrets.TMDB_BEARER_TOKEN }}
-          # Using vars for configuration, or defaulting if not set
-          TMDB_BASE_URL: ${{ vars.TMDB_BASE_URL || 'https://api.tmdb.org/3' }}
-          TMDB_LANGUAGE: ${{ vars.TMDB_LANGUAGE || 'en-US' }}
-          TMDB_NUMBER_OF_MOVIES: ${{ vars.TMDB_NUMBER_OF_MOVIES || '5' }}
-          TMDB_NUMBER_OF_TVSHOWS: ${{ vars.TMDB_NUMBER_OF_TVSHOWS || '5' }}
-          TMDB_CUSTOM_TEXT: ${{ vars.TMDB_CUSTOM_TEXT || 'Now Trending on' }}
+          TMDB_BASE_URL: ${{ vars.TMDB_BASE_URL }}
+          TMDB_IMG_BASE: ${{ vars.TMDB_IMG_BASE }}
+          TMDB_LANGUAGE: ${{ vars.TMDB_LANGUAGE }}
+
+          # Content Settings
+          TMDB_NUMBER_OF_MOVIES: ${{ vars.TMDB_NUMBER_OF_MOVIES }}
+          TMDB_NUMBER_OF_TVSHOWS: ${{ vars.TMDB_NUMBER_OF_TVSHOWS }}
+          MAX_CONTENT_AGE_DAYS: ${{ vars.MAX_CONTENT_AGE_DAYS }}
+          TMDB_CUSTOM_TEXT: ${{ vars.TMDB_CUSTOM_TEXT }}
+
+          # Output Settings
+          OUTPUT_DIR: ${{ vars.OUTPUT_DIR }}
+          CLEAN_OUTPUT_DIR: ${{ vars.CLEAN_OUTPUT_DIR }}
+          PAGES_GITHUB_URL: ${{ vars.PAGES_GITHUB_URL }}
+
+          # Video Quality
+          TARGET_WIDTH: ${{ vars.TARGET_WIDTH }}
+          TARGET_HEIGHT: ${{ vars.TARGET_HEIGHT }}
+          VIDEO_FPS: ${{ vars.VIDEO_FPS }}
+          VIDEO_DURATION: ${{ vars.VIDEO_DURATION }}
+          VIDEO_CRF: ${{ vars.VIDEO_CRF }}
+          VIDEO_PRESET: ${{ vars.VIDEO_PRESET }}
+          VIDEO_ZOOM: ${{ vars.VIDEO_ZOOM }}
+          VIDEO_PAN_START_MARGIN: ${{ vars.VIDEO_PAN_START_MARGIN }}
+          VIDEO_PAN_END_MARGIN: ${{ vars.VIDEO_PAN_END_MARGIN }}
+
+          # Image Quality
+          IMAGE_QUALITY: ${{ vars.IMAGE_QUALITY }}
+          BLUR_RADIUS: ${{ vars.BLUR_RADIUS }}
+          VIGNETTE_STRENGTH: ${{ vars.VIGNETTE_STRENGTH }}
+
+          # Performance Tuning
+          MAX_WORKERS_DOWNLOAD: ${{ vars.MAX_WORKERS_DOWNLOAD }}
+          MAX_WORKERS_PROCESS: ${{ vars.MAX_WORKERS_PROCESS }}
+          FONT_PATH: ${{ vars.FONT_PATH }}
+
+          # Content Filtering
+          EXCLUDED_COUNTRIES: ${{ vars.EXCLUDED_COUNTRIES }}
+          EXCLUDED_KEYWORDS: ${{ vars.EXCLUDED_KEYWORDS }}
         run: python TMDB_color.py
 
       - name: Deploy to GitHub Pages
