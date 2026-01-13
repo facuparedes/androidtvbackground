@@ -1,574 +1,438 @@
-# TMDB background generator using a colored background and vignetting effect
-import requests
-import numpy as np
-import re
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
-from io import BytesIO
 import os
 import shutil
+import json
 import textwrap
+import subprocess
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from io import BytesIO
 from datetime import datetime, timedelta
+
+import requests
+import numpy as np
+from PIL import Image, ImageDraw, ImageFont, ImageFilter
 from dotenv import load_dotenv
-load_dotenv(verbose=True)
+from tqdm import tqdm
+
+load_dotenv()
 
 TMDB_BEARER_TOKEN = os.getenv('TMDB_BEARER_TOKEN')
-TMDB_BASE_URL = os.getenv('TMDB_BASE_URL')
+TMDB_BASE_URL = os.getenv('TMDB_BASE_URL', 'https://api.tmdb.org/3')
+GITHUB_PAGES_URL = os.getenv("GITHUB_PAGES_URL", "").rstrip('/')
 LANGUAGE = os.getenv("TMDB_LANGUAGE", "en-US")
+NUMBER_OF_MOVIES = int(os.getenv("TMDB_NUMBER_OF_MOVIES", "5"))
+NUMBER_OF_TVSHOWS = int(os.getenv("TMDB_NUMBER_OF_TVSHOWS", "5"))
 
-# Set your TMDB API Read Access Token key here
-headers = {
+TARGET_WIDTH = int(os.getenv("TARGET_WIDTH", "1920"))
+TARGET_HEIGHT = int(os.getenv("TARGET_HEIGHT", "1080"))
+VIDEO_FPS = int(os.getenv("VIDEO_FPS", "24"))
+VIDEO_DURATION = int(os.getenv("VIDEO_DURATION", "15"))
+VIDEO_CRF = int(os.getenv("VIDEO_CRF", "23"))
+VIDEO_PRESET = os.getenv("VIDEO_PRESET", "veryfast")
+VIDEO_ZOOM = float(os.getenv("VIDEO_ZOOM", "1.08"))
+VIDEO_PAN_START_MARGIN = float(os.getenv("VIDEO_PAN_START_MARGIN", "0.1"))
+VIDEO_PAN_END_MARGIN = float(os.getenv("VIDEO_PAN_END_MARGIN", "0.9"))
+
+MAX_WORKERS_DOWNLOAD = int(os.getenv("MAX_WORKERS_DOWNLOAD", "8"))
+MAX_WORKERS_PROCESS = int(os.getenv("MAX_WORKERS_PROCESS", "4"))
+MAX_CONTENT_AGE_DAYS = int(os.getenv("MAX_CONTENT_AGE_DAYS", "90"))
+CLEAN_OUTPUT_DIR = os.getenv("CLEAN_OUTPUT_DIR", "false").lower() == "true"
+
+BACKGROUND_DIR = os.getenv("OUTPUT_DIR", "tmdb_backgrounds")
+FONT_PATH = os.getenv("FONT_PATH", "Roboto-Light.ttf")
+FONT_URL = 'https://github.com/googlefonts/roboto/raw/main/src/hinted/Roboto-Light.ttf'
+
+BLUR_RADIUS = int(os.getenv("BLUR_RADIUS", "40"))
+IMAGE_QUALITY = int(os.getenv("IMAGE_QUALITY", "85"))
+VIGNETTE_STRENGTH = float(os.getenv("VIGNETTE_STRENGTH", "2.5"))
+
+EXCLUDED_COUNTRIES = os.getenv("EXCLUDED_COUNTRIES", "").split(",") if os.getenv("EXCLUDED_COUNTRIES") else []
+EXCLUDED_KEYWORDS = os.getenv("EXCLUDED_KEYWORDS", "").split(",") if os.getenv("EXCLUDED_KEYWORDS") else []
+EXCLUDED_GENRES = {}
+
+MAX_AIR_DATE = datetime.now() - timedelta(days=MAX_CONTENT_AGE_DAYS)
+
+session = requests.Session()
+session.headers.update({
     "accept": "application/json",
     "Authorization": f"Bearer {TMDB_BEARER_TOKEN}"
-}
+})
 
 
-# Get current date in YYYYMMDD formaat
-date_str = datetime.now().strftime("%Y%m%d")
-
-# Set the number of movies and tvshwos to get
-numberofmovies = 5
-numberoftvshows = 5
-
-# TV Exclusion list - this filter will exclude TV shows from chosen countries that have a specific genre
-tv_excluded_countries = ['XX', 'XX', 'XX', 'XX', 'XX', 'XX']  # ISO 3166-1 alpha-2 codes lowercas, jp, kr, us for Japan, Korea, and the US
-tv_excluded_genres = {
-    'XX': ['XXXX', 'XXXX', 'XXXX'],  # Exclude Animation and Drama from Japan
-    'XX': ['XXXX', 'XXX', 'XXXX', 'XXXX'],  # Exclude Animation and Drama from Korea
-    'XX': ['XXXX','XXXX'],           # Exclude Animation from the US
-    'XX': ['*'],
-    'XX': ['*'],
-    'X': ['*']
-}
-
-# Movie Exclusion list - this filter will exclude movies from chosen countries that have a specific genre
-movie_excluded_countries = ['XX', 'XX', 'XX', 'XX', 'XX', 'XX']  # ISO 3166-1 alpha-2 codes lowercas, jp, kr, us for Japan, Korea, and the US
-movie_excluded_genres = {
-    'XX': ['XX'],  # Exclude Animation and Drama from Japan
-    'kr': ['XX'],  # Exclude Animation and Drama from Korea
-    'XX': ['XX'],  # Exclude Animation and Drama from US
-    'XX': ['*'],
-    'XX': ['*'],
-    'XX': ['*']
-}
-
-# Keyword exclusion list - this filter will exclude movies or TV shows that contain a specific keyword in their TMDB profile
-excluded_keywords = ['XX', 'XX', 'XX', 'XX', 'XX', 'XX', 'XX','XX']  # like ['adult']
-
-# Filter movies by release date and TV shows by last air date
-max_air_date = datetime.now() - timedelta(days=90)  # specify the number of days since the movie release or the TV show last air date, shows before this date will be excluded
-
-# Save font locally
-truetype_url = 'https://github.com/googlefonts/roboto/raw/main/src/hinted/Roboto-Light.ttf'
-truetype_path = 'Roboto-Light.ttf'
-if not os.path.exists(truetype_path):
-    try:
-        response = requests.get(truetype_url, timeout=10)
-        if response.status_code == 200:
-            with open(truetype_path, 'wb') as f:
-                f.write(response.content)
-            print("Roboto-Light font saved")
-        else:
-            print(f"Failed to download Roboto-Light font. Status code: {response.status_code}")
-    except Exception as e:
-        print(f"An error occurred while downloading the Roboto-Light font: {e}")
-
-
-
-
-# Fetching genres for movies
-genres_url = f'{TMDB_BASE_URL}/genre/movie/list?language={LANGUAGE}'
-genres_response = requests.get(genres_url, headers=headers)
-genres_data = genres_response.json()
-movie_genres = {genre['id']: genre['name'] for genre in genres_data.get('genres', [])}
-
-# Fetching genres for TV shows
-genres_url = f'{TMDB_BASE_URL}/genre/tv/list?language={LANGUAGE}'
-genres_response = requests.get(genres_url, headers=headers)
-genres_data = genres_response.json()
-tv_genres = {genre['id']: genre['name'] for genre in genres_data.get('genres', [])}
-
-# Fetching TV show details
-def get_tv_show_details(tv_id):
-    tv_details_url = f'{TMDB_BASE_URL}/tv/{tv_id}?language={LANGUAGE}'
-    tv_details_response = requests.get(tv_details_url, headers=headers)
-    return tv_details_response.json()
-
-# Fetching movie details
-def get_movie_details(movie_id):
-    movie_details_url = f'{TMDB_BASE_URL}/movie/{movie_id}?language={LANGUAGE}'
-    movie_details_response = requests.get(movie_details_url, headers=headers)
-    return movie_details_response.json()
-
-# Function to fetch keywords for a movie
-def get_movie_keywords(movie_id):
-    keywords_url = f"{TMDB_BASE_URL}/movie/{movie_id}/keywords"
-    response = requests.get(keywords_url, headers=headers)
-    if response.status_code == 200:
-        # Extract and return the names of the keywords
-        return [keyword['name'].lower() for keyword in response.json().get('keywords', [])]
-    return []
-
-# Function to fetch keywords for a TV show
-def get_tv_keywords(tv_id):
-    keywords_url = f"{TMDB_BASE_URL}tv/{tv_id}/keywords"
-    response = requests.get(keywords_url, headers=headers)
-    if response.status_code == 200:
-        return [keyword['name'].lower() for keyword in response.json().get('results', [])]
-    return []
-
-
-
-# Filter criteria for movies
-def should_exclude_movie(movie, movie_excluded_countries=movie_excluded_countries, movie_excluded_genres=movie_excluded_genres, excluded_keywords=excluded_keywords):
-    # Check if the movie's country is in the excluded countries list
-    origin_countries = [c.lower() for c in movie.get('origin_country', [])]
-    genres = [movie_genres.get(genre_id, '') for genre_id in movie.get('genre_ids', [])]
+def setup_environment():
+    if CLEAN_OUTPUT_DIR and os.path.exists(BACKGROUND_DIR):
+        shutil.rmtree(BACKGROUND_DIR)
+        print(f"Cleaned output directory: {BACKGROUND_DIR}")
     
-    # Fetch movie keywords
-    movie_keywords = get_movie_keywords(movie['id']) if excluded_keywords else []
+    os.makedirs(BACKGROUND_DIR, exist_ok=True)
     
-    # Check release date
-    release_date_str = movie.get('release_date')
-    release_date = datetime.strptime(release_date_str, "%Y-%m-%d") if release_date_str else None
-    
-    # Exclusion logic by country and genre
-    for country in origin_countries:
-        if country in movie_excluded_countries:
-            excluded = movie_excluded_genres.get(country, [])
-            if excluded == ['*'] or any(genre in excluded for genre in genres):
-                return True
-    
-    # Exclusion by keyword or date
-    if any(keyword in movie_keywords for keyword in excluded_keywords):
-        return True
-    
-    if release_date and release_date < max_air_date:
-        return True
-    
-    return False
-
-
-# Filter criteria for TV shows
-def should_exclude_tvshow(tvshow, tv_excluded_countries=tv_excluded_countries, tv_excluded_genres=tv_excluded_genres, excluded_keywords=excluded_keywords):
-    # Ensure 'origin_country' is a list or string and get the country (case insensitive)
-    origin_countries = [c.lower() for c in tvshow.get('origin_country', [])]
-    genres = [tv_genres.get(genre_id, '') for genre_id in tvshow.get('genre_ids', [])]
-
-    for country in origin_countries:
-        if country in tv_excluded_countries:
-            excluded = tv_excluded_genres.get(country, [])
-            if excluded == ['*'] or any(genre in excluded for genre in genres):
-                return True
-
-    # Fetch TV show keywords and check against the exclusion list
-    tv_keywords = get_tv_keywords(tvshow['id']) if excluded_keywords else []
-    if any(keyword in tv_keywords for keyword in excluded_keywords):
-        return True
-
-    # Check last air date
-    last_air_date_str = get_tv_show_details(tvshow['id']).get('last_air_date')
-    if last_air_date_str:
+    if not os.path.exists(FONT_PATH):
         try:
-            last_air_date = datetime.strptime(last_air_date_str, "%Y-%m-%d")
-        except ValueError:
-            last_air_date = None
-    else:
-        last_air_date = None
-
-    # Exclude if older than max_air_date
-    if last_air_date and last_air_date < max_air_date:
-        return True
-
-    # Include future shows
-    if last_air_date and last_air_date > datetime.now():
-        return False
-
-    return False
-
-# Endpoint for trending shows
-trending_movies_url = f'{TMDB_BASE_URL}/trending/movie/week?language={LANGUAGE}'
-trending_tvshows_url = f'{TMDB_BASE_URL}/trending/tv/week?language={LANGUAGE}'
-
-# Fetch more than required to allow filtering
-initial_fetch_count = numberofmovies + 10  # Fetch 15 to get at least 5 valid ones
-trending_movies_url = f'{TMDB_BASE_URL}/trending/movie/week?language={LANGUAGE}'
-trending_movies_response = requests.get(trending_movies_url, headers=headers)
-all_movies = trending_movies_response.json().get('results', [])[:initial_fetch_count]
-
-# Filter manually
-valid_movies = []
-for movie in all_movies:
-    if not should_exclude_movie(movie):
-        valid_movies.append(movie)
-    else:
-        print(f"Excluded Movie: {movie['title']} ({movie.get('origin_country')})")
-    
-    if len(valid_movies) >= numberofmovies:
-        break
-
-trending_movies = {'results': valid_movies}
+            r = session.get(FONT_URL, timeout=10)
+            if r.status_code == 200:
+                with open(FONT_PATH, 'wb') as f:
+                    f.write(r.content)
+                print("Font downloaded")
+        except Exception as e:
+            print(f"Font download failed: {e}")
 
 
-# Fetching trending TV shows
-initial_fetch_count = numberoftvshows + 10  # Fetch more than needed
-trending_tvshows_url = f'{TMDB_BASE_URL}/trending/tv/week?language={LANGUAGE}'
-trending_tvshows_response = requests.get(trending_tvshows_url, headers=headers)
-all_tvshows = trending_tvshows_response.json().get('results', [])[:initial_fetch_count]
-
-# Filter manually
-valid_tvshows = []
-for tvshow in all_tvshows:
-    if not should_exclude_tvshow(tvshow):
-        valid_tvshows.append(tvshow)
-    if len(valid_tvshows) >= numberoftvshows:
-        break
-trending_tvshows = {'results': valid_tvshows}
-
-# Create a directory to save the backgrounds and clear its contents if it exists
-
-background_dir = "tmdb_backgrounds"
-if os.path.exists(background_dir):
-    shutil.rmtree(background_dir)
-os.makedirs(background_dir, exist_ok=True)
+def get_tmdb(endpoint, params=None):
+    params = params or {}
+    params['language'] = LANGUAGE
+    try:
+        r = session.get(f"{TMDB_BASE_URL}/{endpoint}", params=params, timeout=10)
+        return r.json() if r.status_code == 200 else {}
+    except:
+        return {}
 
 
-# Truncate overview
-def truncate_overview(overview, max_chars):
-    if len(overview) > max_chars:
-        return overview[:max_chars]
-    else:
-        return overview
-
-# Truncate
-def truncate(overview, max_chars):
-    if len(overview) > max_chars:
-        return overview[:max_chars-3]
-    else:
-        return overview
-
-# Resize image
-def resize_image(image, height):
-    ratio = height / image.height
-    width = int(image.width * ratio)
-    return image.resize((width, height))
-
-def resize_logo(image, width, height):
-    # Get the aspect ratio of the image
-    aspect_ratio = image.width / image.height
-
-    # Calculate new width and height to maintain aspect ratio
-    new_width = width
-    new_height = int(new_width / aspect_ratio)
-
-    # If the calculated height is greater than the desired height,
-    # recalculate the width to fit the desired height
-    if new_height > height:
-        new_height = height
-        new_width = int(new_height * aspect_ratio)
-
-    # Resize the image
-    resized_img = image.resize((new_width, new_height))
-    return resized_img
+def get_genres(media_type):
+    data = get_tmdb(f'genre/{media_type}/list')
+    return {g['id']: g['name'] for g in data.get('genres', [])}
 
 
+def get_keywords(media_type, media_id):
+    endpoint = f"tv/{media_id}/keywords" if media_type == 'tv' else f"movie/{media_id}/keywords"
+    key = 'results' if media_type == 'tv' else 'keywords'
+    data = get_tmdb(endpoint)
+    return [k['name'].lower() for k in data.get(key, [])]
 
 
-
-def vignette_side(h, w, fade_ratio=5, fade_power=5.0, position="bottom-left", offset_left=0, offset_bottom=0):
-    """
-    Create a vignette mask for the given position.
-    offset_left / offset_bottom allow shifting the start of the fade inward in pixels.
-    """
-    y, x = np.ogrid[0:h, 0:w]
-    rx, ry = w * fade_ratio, h * fade_ratio
-
-    dist_x, dist_y = np.ones_like(x, dtype=np.float32), np.ones_like(y, dtype=np.float32)
-
-    if "left" in position:
-        dist_x = np.clip((x - offset_left) / rx, 0, 1)
-    elif "right" in position:
-        dist_x = np.clip((w - x) / rx, 0, 1)
-
-    if "top" in position:
-        dist_y = np.clip(y / ry, 0, 1)
-    elif "bottom" in position:
-        dist_y = np.clip((h - y - offset_bottom) / ry, 0, 1)
-
-    if any(corner in position for corner in ["left", "right"]) and \
-       any(corner in position for corner in ["top", "bottom"]):
-        alpha = np.minimum(dist_x, dist_y)
-    else:
-        alpha = dist_x * dist_y
-
-    alpha = (alpha ** fade_power * 255).astype(np.uint8)
-    mask = Image.fromarray(alpha)
-    return mask
-
-def create_blurry_background(image, size=(3840, 2160), blur_radius=800, dither_strength=16):
-    """
-    Create a blurry canvas background from the input image, with strong noise to prevent banding.
-    """
-    bg = image.resize(size, Image.LANCZOS)
-    bg = bg.filter(ImageFilter.GaussianBlur(radius=blur_radius))
-    bg_array = np.array(bg).astype(np.float32)
-
-    # Add dithering noise
-    noise = np.random.uniform(-dither_strength, dither_strength, bg_array.shape)
-    bg_array = np.clip(bg_array + noise, 0, 255).astype(np.uint8)
-    bg_img = Image.fromarray(bg_array)
-
-    # Detect uniformity
-    gray = np.array(bg_img.convert("L"))
-    is_uniform = gray.std() < 15  # threshold for "too uniform"
-
-    if is_uniform:
-        print("[Background] Detected uniform image, will soften vignette.")
-    
-    return bg_img, is_uniform
-
-def generate_background_fast(input_img, target_width=3000):
-    # Step 1: Create blurry/dark canvas
-    canvas_rgb, is_uniform = create_blurry_background(input_img, size=(3840, 2160), blur_radius=800)
-
-    canvas_array = np.array(canvas_rgb).astype(np.float32)
-    canvas_array = (canvas_array * 0.4).clip(0, 255).astype(np.uint8)  # darken
-    canvas_rgb = Image.fromarray(canvas_array)
-
-    canvas = Image.new("RGBA", canvas_rgb.size, (0, 0, 0, 255))
-    canvas.paste(canvas_rgb, (0, 0))
-
-    # Step 2: Resize input to target width
-    w_percent = target_width / input_img.width
-    new_size = (target_width, int(input_img.height * w_percent))
-    img_resized = input_img.resize(new_size, Image.LANCZOS).convert("RGBA")
-
-    # Step 3: Apply vignette
-    h, w = img_resized.height, img_resized.width
-    mask = vignette_side(
-        h, w,
-        fade_ratio=0.3,
-        fade_power=2.5,
-        position="bottom-left",
-        offset_left=0,
-        offset_bottom=150
-    )
-    mask = mask.filter(ImageFilter.GaussianBlur(radius=60))
-
-    img_resized.putalpha(mask)
-
-    # Step 4: Paste top-right
-    canvas.paste(img_resized, (3840 - w, 0), img_resized)
-
-    return canvas.convert("RGB")
-
-
-def clean_filename(filename):
-    # Remove problematic characters from the filename
-    cleaned_filename = "".join(c if c.isalnum() or c in "._-" else "_" for c in filename)
-    return cleaned_filename
-
-
-# Fetch movie or TV show logo in English
-def get_logo(media_type, media_id, language):
-    # Prepare language code (fr-FR -> fr)
-    lang_code = language.split("-")[0]
-
-    # Build TMDB API URL
-    url = f"{TMDB_BASE_URL}/{media_type}/{media_id}/images?language={LANGUAGE}"
-    response = requests.get(url, headers=headers)
-    if response.status_code != 200:
-        return None
-
-    logos = response.json().get("logos", [])
-
-    # If no logos at all, try English fallback
+def get_logo(media_type, media_id):
+    data = get_tmdb(f"{media_type}/{media_id}/images", {'include_image_language': f'{LANGUAGE},en,null'})
+    logos = data.get('logos', [])
     if not logos:
-        url_en = f"{TMDB_BASE_URL}/{media_type}/{media_id}/images?language=en"
-        response_en = requests.get(url_en, headers=headers)
-        if response_en.status_code == 200:
-            logos_en = response_en.json().get("logos", [])
-            if logos_en:
-                return sorted(logos_en, key=lambda x: x.get("vote_average", 0), reverse=True)[0]["file_path"]
         return None
-
-    # 1. Exact match for requested language
-    lang_match = [l for l in logos if l.get("iso_639_1") == LANGUAGE]
-    if lang_match:
-        # Pick highest rated
-        return sorted(lang_match, key=lambda x: x.get("vote_average", 0), reverse=True)[0]["file_path"]
-
-    # 4. Last fallback: best-rated logo overall
+    
+    match = [l for l in logos if l.get("iso_639_1") == LANGUAGE]
+    if match:
+        return sorted(match, key=lambda x: x.get("vote_average", 0), reverse=True)[0]["file_path"]
+    
     return sorted(logos, key=lambda x: x.get("vote_average", 0), reverse=True)[0]["file_path"]
 
 
-def process_image(image_url, title, is_movie, genre, year, rating, duration=None, seasons=None):
-    response = requests.get(image_url, timeout=10)
-    if response.status_code == 200:
-        input_img = Image.open(BytesIO(response.content))
+def should_exclude(item, media_type, genres_map):
+    date_key = 'release_date' if media_type == 'movie' else 'last_air_date'
+    date_val = item.get(date_key)
+    
+    if media_type == 'tv' and not date_val:
+        details = get_tmdb(f"tv/{item['id']}")
+        date_val = details.get('last_air_date')
 
-        # Generate blurred/vignette background instead of static overlay
-        bckg = generate_background_fast(input_img, target_width=3000)
-
-
-        draw = ImageDraw.Draw(bckg)
-
-        tmdblogo = Image.open(os.path.join(os.path.dirname(__file__), "tmdblogo.png"))
-
-        # Fonts
-        font_title = ImageFont.truetype(truetype_path, size=190)
-        font_overview = ImageFont.truetype(truetype_path, size=50)
-        font_custom = ImageFont.truetype(truetype_path, size=60)
-
-        shadow_color = "black"
-        main_color = "white"
-        overview_color = "white"
-        metadata_color = "white"
-
-        title_position = (200, 420)
-        overview_position = (210, 730)
-        shadow_offset = 2
-        info_position = (210, 650)
-
-        # Wrap overview
-        wrapped_overview = "\n".join(textwrap.wrap(overview, width=65, max_lines=3, placeholder=" ..."))
-        lines = wrapped_overview.split("\n")
-
-        # Compute height of one line using getbbox
-        bbox = font_overview.getbbox("A")  # (left, top, right, bottom)
-        line_height = bbox[3] - bbox[1]
-
-        # Total height of wrapped summary
-        summary_height = line_height * len(lines)
-
-        custom_position =  (210, overview_position[1] + summary_height + 100)
+    if date_val:
+        try:
+            dt = datetime.strptime(date_val, "%Y-%m-%d")
+            if dt < MAX_AIR_DATE:
+                return True
+        except:
+            pass
+            
+    countries = [c.lower() for c in item.get('origin_country', [])]
+    item_genres = [genres_map.get(gid, '') for gid in item.get('genre_ids', [])]
+    
+    for c in countries:
+        if c in EXCLUDED_COUNTRIES:
+            bad_genres = EXCLUDED_GENRES.get(c, [])
+            if '*' in bad_genres or any(g in bad_genres for g in item_genres):
+                return True
+                
+    if EXCLUDED_KEYWORDS:
+        keys = get_keywords(media_type, item['id'])
+        if any(k in keys for k in EXCLUDED_KEYWORDS):
+            return True
+            
+    return False
 
 
-        # Overview
-        draw.text((overview_position[0] + shadow_offset, overview_position[1] + shadow_offset),
-                  wrapped_overview, font=font_overview, fill=shadow_color)
-        draw.text(overview_position, wrapped_overview, font=font_overview, fill=overview_color)
+def create_vignette(w, h):
+    y, x = np.ogrid[0:h, 0:w]
+    fade_ratio = 0.3
+    rx, ry = w * fade_ratio, h * fade_ratio
+    
+    dist_x = np.clip(x / rx, 0, 1)
+    dist_y = np.clip((h - y - 150) / ry, 0, 1)
+    alpha = (np.minimum(dist_x, dist_y) ** VIGNETTE_STRENGTH * 255).astype(np.uint8)
+    
+    mask = Image.fromarray(alpha)
+    return mask.filter(ImageFilter.GaussianBlur(radius=60))
 
-        # Metadata
-        if is_movie:
-            genre_text = genre
-            additional_info = f"{duration}"
-        else:
-            genre_text = genre
-            additional_info = f"{seasons} {'Season' if seasons == 1 else 'Seasons'}"
 
-        rating_text = "TMDB: " + str(rating)
-        year_text = truncate(str(year), 7)
-        info_text = f"{genre_text}  •  {year_text}  •  {additional_info}  •  {rating_text}"
+def generate_background_card(img_pil):
+    bg_w, bg_h = TARGET_WIDTH, TARGET_HEIGHT
+    small_w = max(bg_w // 20, 1)
+    small_h = max(bg_h // 20, 1)
+    
+    bg_small = img_pil.resize((small_w, small_h), Image.LANCZOS)
+    bg_small = bg_small.filter(ImageFilter.GaussianBlur(radius=BLUR_RADIUS))
+    bg_base = bg_small.resize((bg_w, bg_h), Image.BICUBIC)
+    
+    arr = np.array(bg_base, dtype=np.float32)
+    noise = np.random.uniform(-16, 16, arr.shape)
+    arr = np.clip(arr * 0.4 + noise, 0, 255).astype(np.uint8)
+    
+    canvas = Image.new("RGBA", (bg_w, bg_h), (0, 0, 0, 255))
+    canvas.paste(Image.fromarray(arr), (0, 0))
+    
+    target_img_w = int(TARGET_WIDTH * 0.78)
+    ratio = target_img_w / img_pil.width
+    new_h = int(img_pil.height * ratio)
+    img_resized = img_pil.resize((target_img_w, new_h), Image.LANCZOS).convert("RGBA")
+    
+    mask = create_vignette(target_img_w, img_resized.height)
+    img_resized.putalpha(mask)
+    
+    canvas.paste(img_resized, (TARGET_WIDTH - target_img_w, 0), img_resized)
+    return canvas.convert("RGB")
 
-        draw.text((info_position[0] + shadow_offset, info_position[1] + shadow_offset),
-                  info_text, font=font_overview, fill=shadow_color)
-        draw.text(info_position, info_text, font=font_overview, fill=overview_color)
 
-        # Logo (same as your old code)
-        if is_movie:
-            logo_path = get_logo("movie", movie['id'], language="en")
-        else:
-            logo_path = get_logo("tv", tvshow['id'], language="en")
+def create_video_ffmpeg(bg_image, overlay_image, output_path):
+    temp_bg = output_path.replace(".mp4", "_temp_bg.png")
+    temp_ov = output_path.replace(".mp4", "_temp_ov.png")
+    
+    try:
+        w, h = bg_image.size
+        zoom = VIDEO_ZOOM
+        zw, zh = int(w * zoom), int(h * zoom)
+        
+        # PNG para evitar artifacts de compresión en el movimiento
+        bg_image.resize((zw, zh), Image.LANCZOS).save(temp_bg, optimize=False)
+        overlay_image.save(temp_ov, optimize=False)
+        
+        diff_w = zw - w
+        # Márgenes configurables para controlar la distancia del movimiento
+        min_x = diff_w * VIDEO_PAN_START_MARGIN
+        max_x = diff_w * VIDEO_PAN_END_MARGIN
+        dist = max_x - min_x
+        
+        # Dirección aleatoria del pan
+        direction = np.random.choice([True, False])
+        x_start = min_x if direction else max_x
+        x_end = max_x if direction else min_x
+        
+        total_frames = VIDEO_DURATION * VIDEO_FPS
+        
+        # Crop animado basado en frames (n) para movimiento perfectamente lineal
+        # Usa 'n' (frame number) en lugar de 't' (tiempo) para evitar interpolación
+        x_expr = f"if(eq(n,0),{x_start},{x_start}+({x_end}-{x_start})*n/{total_frames})"
+        
+        filter_str = (
+            f"[0:v]crop=w={w}:h={h}:x='{x_expr}':y='(ih-oh)/2'[bg];"
+            f"[bg][1:v]overlay=0:0:format=auto[combined];"
+            f"[combined]fade=t=in:st=0:d=2:color=0x000000,fade=t=out:st={VIDEO_DURATION-2.1}:d=2:color=0x000000[out]"
+        )
+        
+        cmd = [
+            "ffmpeg", "-y", "-loglevel", "error",
+            "-framerate", str(VIDEO_FPS),  # FPS en el input para timing correcto
+            "-loop", "1", "-i", temp_bg,
+            "-framerate", str(VIDEO_FPS),
+            "-loop", "1", "-i", temp_ov,
+            "-filter_complex", filter_str,
+            "-map", "[out]",
+            "-t", str(VIDEO_DURATION),
+            "-c:v", "libx264",
+            "-preset", VIDEO_PRESET,
+            "-crf", str(VIDEO_CRF),
+            "-pix_fmt", "yuv420p",
+            "-vsync", "cfr",  # Frame rate constante - CRÍTICO para evitar stuttering
+            "-movflags", "+faststart",
+            "-threads", "0",
+            output_path
+        ]
+        
+        result = subprocess.run(cmd, capture_output=True, check=True, timeout=120)
+        return True
+    
+    except subprocess.TimeoutExpired:
+        print(f"FFmpeg timeout: {output_path}")
+        return False
+    except subprocess.CalledProcessError as e:
+        print(f"FFmpeg error: {e.stderr.decode()}")
+        return False
+    except Exception as e:
+        print(f"Video creation error: {e}")
+        return False
+    finally:
+        for f in [temp_bg, temp_ov]:
+            if os.path.exists(f):
+                os.remove(f)
 
+
+def clean_filename(s):
+    return "".join(c if c.isalnum() or c in "._-" else "_" for c in s)
+
+
+def download_image(url, timeout=10):
+    try:
+        resp = session.get(url, timeout=timeout)
+        if resp.status_code == 200:
+            return Image.open(BytesIO(resp.content))
+    except:
+        pass
+    return None
+
+
+def fetch_media_details(item, media_type):
+    item_id = item['id']
+    if media_type == 'movie':
+        d = get_tmdb(f"movie/{item_id}")
+        r = d.get('runtime', 0)
+        return f"{r//60}h{r%60}min" if r else "N/A"
+    else:
+        d = get_tmdb(f"tv/{item_id}")
+        cnt = d.get('number_of_seasons', 0)
+        return f"{cnt} Season{'s' if cnt != 1 else ''}" if cnt else "N/A"
+
+
+def process_media(item, media_type, genres_map):
+    item_id = item['id']
+    name = item.get('title') if media_type == 'movie' else item.get('name')
+    if not name:
+        return None
+    
+    if should_exclude(item, media_type, genres_map):
+        print(f"Excluded: {name}")
+        return None
+
+    backdrop = item.get('backdrop_path')
+    if not backdrop:
+        return None
+    
+    clean_title = clean_filename(name)
+    f_img = os.path.join(BACKGROUND_DIR, f"{clean_title}.jpg")
+    f_vid = os.path.join(BACKGROUND_DIR, f"{clean_title}.mp4")
+    
+    base = GITHUB_PAGES_URL if GITHUB_PAGES_URL else "."
+    json_data = {
+        "location": "TMDB",
+        "title": name,
+        "author": "TMDB",
+        "url_img": f"{base}/{clean_title}.jpg",
+        "url_1080p": f"{base}/{clean_title}.mp4",
+        "url_4k": f"{base}/{clean_title}.mp4",
+        "url_1080p_hdr": None,
+        "url_4k_hdr": None
+    }
+
+    if os.path.exists(f_img) and os.path.exists(f_vid):
+        return clean_title, json_data
+
+    try:
+        src_img = download_image(f"https://image.tmdb.org/t/p/original{backdrop}")
+        if not src_img:
+            return None
+        
+        bg_card = generate_background_card(src_img)
+        overlay = Image.new("RGBA", bg_card.size, (0, 0, 0, 0))
+        draw = ImageDraw.Draw(overlay)
+        
+        s_factor = TARGET_HEIGHT / 2160.0
+        font_t = ImageFont.truetype(FONT_PATH, size=int(190 * s_factor))
+        font_o = ImageFont.truetype(FONT_PATH, size=int(50 * s_factor))
+        
+        padding_x = int(210 * s_factor)
+        
+        year = (item.get('release_date') or item.get('first_air_date') or "N/A")[:4]
+        rating = round(item.get('vote_average', 0), 1)
+        genre_str = ', '.join([genres_map.get(g, '') for g in item.get('genre_ids', []) if g in genres_map])
+        extra = fetch_media_details(item, media_type)
+        meta_text = f"{genre_str}  •  {year}  •  {extra}  •  TMDB: {rating}"
+        
+        wrap_width = 65
+        overview_lines = textwrap.wrap(item.get('overview', ''), width=wrap_width, max_lines=8, placeholder=" ...")
+        
+        logo_path = get_logo(media_type, item_id)
         logo_drawn = False
+        current_y = int(420 * s_factor)
+        
         if logo_path:
-            logo_url = f"https://image.tmdb.org/t/p/original{logo_path}"
-            logo_response = requests.get(logo_url)
-            if logo_response.status_code == 200:
-                try:
-                    logo_image = Image.open(BytesIO(logo_response.content))
-                    logo_image = resize_logo(logo_image, 1000, 500)
-                    logo_position = (210, info_position[1] - logo_image.height - 25)
-                    logo_image = logo_image.convert('RGBA')
-                    bckg.paste(logo_image, logo_position, logo_image)
-                    logo_drawn = True
-                except Exception as e:
-                    print(f"Failed to draw logo for {title}: {e}")
-
+            l_img = download_image(f"https://image.tmdb.org/t/p/original{logo_path}")
+            if l_img:
+                lw, lh = int(1000 * s_factor), int(500 * s_factor)
+                l_img.thumbnail((lw, lh), Image.LANCZOS)
+                overlay.paste(l_img.convert('RGBA'), (padding_x, current_y), l_img.convert('RGBA'))
+                current_y += l_img.height + int(25 * s_factor)
+                logo_drawn = True
+            
         if not logo_drawn:
-            draw.text((title_position[0] + shadow_offset, title_position[1] + shadow_offset),
-                      title, font=font_title, fill=shadow_color)
-            draw.text(title_position, title, font=font_title, fill=main_color)
+            draw.text((padding_x + 2, current_y + 2), name, font=font_t, fill="black")
+            draw.text((padding_x, current_y), name, font=font_t, fill="white")
+            bbox = font_t.getbbox(name)
+            current_y += (bbox[3] - bbox[1]) + int(25 * s_factor)
 
-        # Custom text
-        draw.text((custom_position[0] + shadow_offset, custom_position[1] + shadow_offset),
-                  custom_text, font=font_custom, fill=shadow_color)
-        draw.text(custom_position, custom_text, font=font_custom, fill=metadata_color)
+        current_y += int(50 * s_factor)
+        draw.text((padding_x + 2, current_y + 2), meta_text, font=font_o, fill="black")
+        draw.text((padding_x, current_y), meta_text, font=font_o, fill="white")
+        current_y += int(80 * s_factor)
 
-        bckg.paste(tmdblogo, (680, custom_position[1] + 20), tmdblogo)
+        for line in overview_lines:
+            draw.text((padding_x + 2, current_y + 2), line, font=font_o, fill="black")
+            draw.text((padding_x, current_y), line, font=font_o, fill="white")
+            bbox = font_o.getbbox(line)
+            current_y += (bbox[3] - bbox[1]) + int(10 * s_factor)
 
-        # Save
-        filename = os.path.join(background_dir, f"{clean_filename(title)}.jpg")
-        bckg = bckg.convert('RGB')
-        bckg.save(filename)
-        print(f"Image saved: {filename}")
-    else:
-        print(f"Failed to download background for {title}")
+        final = Image.alpha_composite(bg_card.convert("RGBA"), overlay).convert("RGB")
+        final.save(f_img, quality=IMAGE_QUALITY, optimize=True)
+        
+        if not os.path.exists(f_vid):
+            is_ok = create_video_ffmpeg(bg_card, overlay, f_vid)
+            if not is_ok:
+                print(f"Video failed: {name}")
+
+        print(f"Processed: {name}")
+        return clean_title, json_data
+
+    except Exception as e:
+        print(f"Error {name}: {e}")
+        return None
 
 
-# Process each trending movie
-for movie in trending_movies.get('results', []):
-    if should_exclude_movie(movie):
-        print(f"Excluded Movie: {movie['title']} ({movie.get('origin_country')})")
-        continue
+def main():
+    setup_environment()
+    
+    print("Fetching trending content...")
+    movies_raw = get_tmdb('trending/movie/week').get('results', [])[:NUMBER_OF_MOVIES]
+    tv_raw = get_tmdb('trending/tv/week').get('results', [])[:NUMBER_OF_TVSHOWS]
+    
+    movie_genres = get_genres('movie')
+    tv_genres = get_genres('tv')
+    
+    tasks = []
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS_PROCESS) as executor:
+        for m in movies_raw:
+            tasks.append(executor.submit(process_media, m, 'movie', movie_genres))
+        for t in tv_raw:
+            tasks.append(executor.submit(process_media, t, 'tv', tv_genres))
+            
+        valid_files = set()
+        json_output = []
+        
+        for future in tqdm(as_completed(tasks), total=len(tasks), desc="Processing"):
+            try:
+                result = future.result()
+                if result:
+                    clean_name, j_data = result
+                    valid_files.add(f"{clean_name}.jpg")
+                    valid_files.add(f"{clean_name}.mp4")
+                    json_output.append(j_data)
+            except Exception as e:
+                print(f"Task error: {e}")
 
-    # Extract movie details
-    title = movie['title']
-    overview = movie['overview']
-    year = movie['release_date']
-    rating = round(movie['vote_average'], 1)
-    genre = ', '.join([movie_genres[genre_id] for genre_id in movie['genre_ids']])
+    json_file = os.path.join(BACKGROUND_DIR, "videos.json")
+    with open(json_file, 'w', encoding='utf-8') as f:
+        json.dump(json_output, f, indent=4, ensure_ascii=False)
+    print(f"Saved: {json_file}")
+        
+    for filename in os.listdir(BACKGROUND_DIR):
+        if (filename.endswith('.jpg') or filename.endswith('.mp4')) and filename not in valid_files:
+            try:
+                os.remove(os.path.join(BACKGROUND_DIR, filename))
+                print(f"Cleaned: {filename}")
+            except:
+                pass
+            
+    print("Done")
 
-    # Fetch additional movie details
-    movie_details = get_movie_details(movie['id'])
-    duration = movie_details.get('runtime', 0)
 
-    # Format duration as hours and minutes
-    if duration:
-        hours = duration // 60
-        minutes = duration % 60
-        duration = f"{hours}h{minutes}min"
-    else:
-        duration = "N/A"
-
-    # Check if backdrop image is available
-    backdrop_path = movie['backdrop_path']
-    custom_text = "Now Trending on"
-    if backdrop_path:
-        # Construct image URL
-        image_url = f"https://image.tmdb.org/t/p/original{backdrop_path}"
-        # Process the image
-        process_image(image_url, title, is_movie=True, genre=genre, year=year, rating=rating, duration=duration)
-    else:
-        # Print error message if no backdrop image found
-        print(f"No backdrop image found for {title}")
-
-# Process trending TV shows
-for tvshow in trending_tvshows.get('results', []):
-    if should_exclude_tvshow(tvshow):
-        print(f"Excluded TV Show: {tvshow['name']} ({tvshow.get('origin_country')})")
-        continue
-
-    # Extract TV show details
-    title = truncate_overview(tvshow['name'], 38)
-    overview = tvshow['overview']
-    year = tvshow['first_air_date']
-    rating = round(tvshow['vote_average'], 1)
-    genre = ', '.join([tv_genres[genre_id] for genre_id in tvshow['genre_ids']])
-
-    # Fetch additional TV show details
-    tv_details = get_tv_show_details(tvshow['id'])
-    seasons = tv_details.get('number_of_seasons', 0)
-
-    # Check if backdrop image is available
-    backdrop_path = tvshow['backdrop_path']
-    custom_text = "Now Trending on"
-    if backdrop_path:
-        # Construct image URL
-        image_url = f"https://image.tmdb.org/t/p/original{backdrop_path}"
-
-        # Process the image
-        process_image(image_url, title, is_movie=False, genre=genre, year=year, rating=rating, seasons=seasons)
-    else:
-        # Print error message if no backdrop image found
-        print(f"No backdrop image found for {title}")
+if __name__ == "__main__":
+    main()
