@@ -4,8 +4,8 @@
         "title": "Stranger Things",
         "author": "TMDB",
         "url_img": "https://raw.githubusercontent.com/facuparedes/androidtvbackground/refs/heads/files/Stranger_Things.jpg",
-        "url_1080p": "https://raw.githubusercontent.com/facuparedes/androidtvbackground/refs/heads/files/Stranger_Things.mp4",
-        "url_4k": "https://raw.githubusercontent.com/facuparedes/androidtvbackground/refs/heads/files/Stranger_Things.mp4",
+        "url_1080p": null,
+        "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null
     },
@@ -14,8 +14,8 @@
         "title": "Predator: Badlands",
         "author": "TMDB",
         "url_img": "https://raw.githubusercontent.com/facuparedes/androidtvbackground/refs/heads/files/Predator__Badlands.jpg",
-        "url_1080p": "https://raw.githubusercontent.com/facuparedes/androidtvbackground/refs/heads/files/Predator__Badlands.mp4",
-        "url_4k": "https://raw.githubusercontent.com/facuparedes/androidtvbackground/refs/heads/files/Predator__Badlands.mp4",
+        "url_1080p": null,
+        "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null
     }
