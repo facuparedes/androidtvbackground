@@ -16,34 +16,34 @@ from tqdm import tqdm
 load_dotenv()
 
 TMDB_BEARER_TOKEN = os.getenv('TMDB_BEARER_TOKEN')
-TMDB_BASE_URL = os.getenv('TMDB_BASE_URL', 'https://api.tmdb.org/3')
-PAGES_GITHUB_URL = os.getenv("PAGES_GITHUB_URL", "").rstrip('/')
-LANGUAGE = os.getenv("TMDB_LANGUAGE", "en-US")
-NUMBER_OF_MOVIES = int(os.getenv("TMDB_NUMBER_OF_MOVIES", "5"))
-NUMBER_OF_TVSHOWS = int(os.getenv("TMDB_NUMBER_OF_TVSHOWS", "5"))
+TMDB_BASE_URL = os.getenv('TMDB_BASE_URL') or 'https://api.tmdb.org/3'
+PAGES_GITHUB_URL = (os.getenv("PAGES_GITHUB_URL") or "").rstrip('/')
+LANGUAGE = os.getenv("TMDB_LANGUAGE") or "en-US"
+NUMBER_OF_MOVIES = int(os.getenv("TMDB_NUMBER_OF_MOVIES") or "5")
+NUMBER_OF_TVSHOWS = int(os.getenv("TMDB_NUMBER_OF_TVSHOWS") or "5")
 
-TARGET_WIDTH = int(os.getenv("TARGET_WIDTH", "1920"))
-TARGET_HEIGHT = int(os.getenv("TARGET_HEIGHT", "1080"))
-VIDEO_FPS = int(os.getenv("VIDEO_FPS", "24"))
-VIDEO_DURATION = int(os.getenv("VIDEO_DURATION", "15"))
-VIDEO_CRF = int(os.getenv("VIDEO_CRF", "23"))
-VIDEO_PRESET = os.getenv("VIDEO_PRESET", "veryfast")
-VIDEO_ZOOM = float(os.getenv("VIDEO_ZOOM", "1.08"))
-VIDEO_PAN_START_MARGIN = float(os.getenv("VIDEO_PAN_START_MARGIN", "0.1"))
-VIDEO_PAN_END_MARGIN = float(os.getenv("VIDEO_PAN_END_MARGIN", "0.9"))
+TARGET_WIDTH = int(os.getenv("TARGET_WIDTH") or "1920")
+TARGET_HEIGHT = int(os.getenv("TARGET_HEIGHT") or "1080")
+VIDEO_FPS = int(os.getenv("VIDEO_FPS") or "24")
+VIDEO_DURATION = int(os.getenv("VIDEO_DURATION") or "15")
+VIDEO_CRF = int(os.getenv("VIDEO_CRF") or "23")
+VIDEO_PRESET = os.getenv("VIDEO_PRESET") or "veryfast"
+VIDEO_ZOOM = float(os.getenv("VIDEO_ZOOM") or "1.08")
+VIDEO_PAN_START_MARGIN = float(os.getenv("VIDEO_PAN_START_MARGIN") or "0.1")
+VIDEO_PAN_END_MARGIN = float(os.getenv("VIDEO_PAN_END_MARGIN") or "0.9")
 
-MAX_WORKERS_DOWNLOAD = int(os.getenv("MAX_WORKERS_DOWNLOAD", "8"))
-MAX_WORKERS_PROCESS = int(os.getenv("MAX_WORKERS_PROCESS", "4"))
-MAX_CONTENT_AGE_DAYS = int(os.getenv("MAX_CONTENT_AGE_DAYS", "90"))
-CLEAN_OUTPUT_DIR = os.getenv("CLEAN_OUTPUT_DIR", "false").lower() == "true"
+MAX_WORKERS_DOWNLOAD = int(os.getenv("MAX_WORKERS_DOWNLOAD") or "8")
+MAX_WORKERS_PROCESS = int(os.getenv("MAX_WORKERS_PROCESS") or "4")
+MAX_CONTENT_AGE_DAYS = int(os.getenv("MAX_CONTENT_AGE_DAYS") or "90")
+CLEAN_OUTPUT_DIR = (os.getenv("CLEAN_OUTPUT_DIR") or "false").lower() == "true"
 
-BACKGROUND_DIR = os.getenv("OUTPUT_DIR", "tmdb_backgrounds")
-FONT_PATH = os.getenv("FONT_PATH", "Roboto-Light.ttf")
+BACKGROUND_DIR = os.getenv("OUTPUT_DIR") or "tmdb_backgrounds"
+FONT_PATH = os.getenv("FONT_PATH") or "Roboto-Light.ttf"
 FONT_URL = 'https://github.com/googlefonts/roboto/raw/main/src/hinted/Roboto-Light.ttf'
 
-BLUR_RADIUS = int(os.getenv("BLUR_RADIUS", "40"))
-IMAGE_QUALITY = int(os.getenv("IMAGE_QUALITY", "85"))
-VIGNETTE_STRENGTH = float(os.getenv("VIGNETTE_STRENGTH", "2.5"))
+BLUR_RADIUS = int(os.getenv("BLUR_RADIUS") or "40")
+IMAGE_QUALITY = int(os.getenv("IMAGE_QUALITY") or "85")
+VIGNETTE_STRENGTH = float(os.getenv("VIGNETTE_STRENGTH") or "2.5")
 
 EXCLUDED_COUNTRIES = os.getenv("EXCLUDED_COUNTRIES", "").split(",") if os.getenv("EXCLUDED_COUNTRIES") else []
 EXCLUDED_KEYWORDS = os.getenv("EXCLUDED_KEYWORDS", "").split(",") if os.getenv("EXCLUDED_KEYWORDS") else []
