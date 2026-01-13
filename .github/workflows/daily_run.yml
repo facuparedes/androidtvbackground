@@ -49,6 +49,7 @@ jobs:
           OUTPUT_DIR: ${{ vars.OUTPUT_DIR }}
           CLEAN_OUTPUT_DIR: ${{ vars.CLEAN_OUTPUT_DIR }}
           PAGES_GITHUB_URL: ${{ vars.PAGES_GITHUB_URL }}
+          GENERATE_VIDEO: ${{ vars.GENERATE_VIDEO }}
 
           # Video Quality
           TARGET_WIDTH: ${{ vars.TARGET_WIDTH }}

@@ -23,6 +23,7 @@
 | `OUTPUT_DIR`       | `tmdb_backgrounds` | Directory for generated files                       |
 | `PAGES_GITHUB_URL` | Empty              | Base URL for JSON file references                   |
 | `CLEAN_OUTPUT_DIR` | `false`            | Set to `true` to delete all files before processing |
+| `GENERATE_VIDEO`   | `true`             | Set to `false` to skip video generation             |
 
 ## Video Quality
 

@@ -36,6 +36,7 @@ MAX_WORKERS_DOWNLOAD = int(os.getenv("MAX_WORKERS_DOWNLOAD") or "8")
 MAX_WORKERS_PROCESS = int(os.getenv("MAX_WORKERS_PROCESS") or "4")
 MAX_CONTENT_AGE_DAYS = int(os.getenv("MAX_CONTENT_AGE_DAYS") or "90")
 CLEAN_OUTPUT_DIR = (os.getenv("CLEAN_OUTPUT_DIR") or "false").lower() == "true"
+GENERATE_VIDEO = (os.getenv("GENERATE_VIDEO") or "true").lower() == "true"
 
 BACKGROUND_DIR = os.getenv("OUTPUT_DIR") or "tmdb_backgrounds"
 FONT_PATH = os.getenv("FONT_PATH") or "Roboto-Light.ttf"
@@ -303,18 +304,19 @@ def process_media(item, media_type, genres_map):
     f_vid = os.path.join(BACKGROUND_DIR, f"{clean_title}.mp4")
     
     base = PAGES_GITHUB_URL if PAGES_GITHUB_URL else "."
-    json_data = {
-        "location": "TMDB",
-        "title": name,
-        "author": "TMDB",
-        "url_img": f"{base}/{clean_title}.jpg",
-        "url_1080p": f"{base}/{clean_title}.mp4",
-        "url_4k": f"{base}/{clean_title}.mp4",
-        "url_1080p_hdr": None,
-        "url_4k_hdr": None
-    }
-
-    if os.path.exists(f_img) and os.path.exists(f_vid):
+    
+    # Check if files already exist
+    if os.path.exists(f_img) and (not GENERATE_VIDEO or os.path.exists(f_vid)):
+        json_data = {
+            "location": "TMDB",
+            "title": name,
+            "author": "TMDB",
+            "url_img": f"{base}/{clean_title}.jpg" if os.path.exists(f_img) else None,
+            "url_1080p": f"{base}/{clean_title}.mp4" if os.path.exists(f_vid) else None,
+            "url_4k": f"{base}/{clean_title}.mp4" if os.path.exists(f_vid) else None,
+            "url_1080p_hdr": None,
+            "url_4k_hdr": None
+        }
         return clean_title, json_data
 
     try:
@@ -374,10 +376,25 @@ def process_media(item, media_type, genres_map):
         final = Image.alpha_composite(bg_card.convert("RGBA"), overlay).convert("RGB")
         final.save(f_img, quality=IMAGE_QUALITY, optimize=True)
         
-        if not os.path.exists(f_vid):
+        video_created = False
+        if GENERATE_VIDEO and not os.path.exists(f_vid):
             is_ok = create_video_ffmpeg(bg_card, overlay, f_vid)
-            if not is_ok:
+            if is_ok:
+                video_created = True
+            else:
                 print(f"Video failed: {name}")
+
+        # Create JSON with only existing file URLs
+        json_data = {
+            "location": "TMDB",
+            "title": name,
+            "author": "TMDB",
+            "url_img": f"{base}/{clean_title}.jpg" if os.path.exists(f_img) else None,
+            "url_1080p": f"{base}/{clean_title}.mp4" if os.path.exists(f_vid) else None,
+            "url_4k": f"{base}/{clean_title}.mp4" if os.path.exists(f_vid) else None,
+            "url_1080p_hdr": None,
+            "url_4k_hdr": None
+        }
 
         print(f"Processed: {name}")
         return clean_title, json_data
