@@ -234,6 +234,8 @@ def create_video_ffmpeg(bg_image, overlay_image, output_path):
             "-c:v", "libx264",
             "-preset", VIDEO_PRESET,
             "-crf", str(VIDEO_CRF),
+            "-maxrate", "2M",  # Limitar bitrate máximo para reducir tamaño
+            "-bufsize", "4M",  # Buffer para control de bitrate
             "-pix_fmt", "yuv420p",
             "-vsync", "cfr",  # Frame rate constante - CRÍTICO para evitar stuttering
             "-movflags", "+faststart",
@@ -374,7 +376,7 @@ def process_media(item, media_type, genres_map):
             current_y += (bbox[3] - bbox[1]) + int(10 * s_factor)
 
         final = Image.alpha_composite(bg_card.convert("RGBA"), overlay).convert("RGB")
-        final.save(f_img, quality=IMAGE_QUALITY, optimize=True)
+        final.save(f_img, quality=IMAGE_QUALITY, optimize=True, progressive=True)
         
         video_created = False
         if GENERATE_VIDEO and not os.path.exists(f_vid):
