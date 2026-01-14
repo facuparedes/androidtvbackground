@@ -1,9 +1,9 @@
 [
     {
         "location": "TMDB",
-        "title": "Rental Family",
+        "title": "La asistenta",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Rental_Family.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_asistenta.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -11,9 +11,9 @@
     },
     {
         "location": "TMDB",
-        "title": "28 años después: El templo de los huesos",
+        "title": "Gente que conocemos en vacaciones",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/28_años_después__El_templo_de_los_huesos.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Gente_que_conocemos_en_vacaciones.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -41,9 +41,19 @@
     },
     {
         "location": "TMDB",
-        "title": "Gente que conocemos en vacaciones",
+        "title": "28 años después: El templo de los huesos",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Gente_que_conocemos_en_vacaciones.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/28_años_después__El_templo_de_los_huesos.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null
+    },
+    {
+        "location": "TMDB",
+        "title": "Rental Family",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Rental_Family.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -61,9 +71,9 @@
     },
     {
         "location": "TMDB",
-        "title": "La asistenta",
+        "title": "Una batalla tras otra",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_asistenta.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Una_batalla_tras_otra.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -91,16 +101,6 @@
     },
     {
         "location": "TMDB",
-        "title": "Fallout",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Fallout.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null
-    },
-    {
-        "location": "TMDB",
         "title": "Stranger Things",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Stranger_Things.jpg",
@@ -114,6 +114,16 @@
         "title": "Jujutsu Kaisen",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Jujutsu_Kaisen.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null
+    },
+    {
+        "location": "TMDB",
+        "title": "Fallout",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Fallout.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -151,9 +161,29 @@
     },
     {
         "location": "TMDB",
-        "title": "Made in Korea",
+        "title": "Pluribus",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Made_in_Korea.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Pluribus.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null
+    },
+    {
+        "location": "TMDB",
+        "title": "Mil golpes",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Mil_golpes.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null
+    },
+    {
+        "location": "TMDB",
+        "title": "It: Bienvenidos a Derry",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/It__Bienvenidos_a_Derry.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
