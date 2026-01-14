@@ -1,11 +1,21 @@
 [
     {
         "location": "TMDB",
-        "title": "Jujutsu Kaisen",
+        "title": "Rental Family",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Jujutsu_Kaisen.jpg",
-        "url_1080p": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Jujutsu_Kaisen.mp4",
-        "url_4k": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Jujutsu_Kaisen.mp4",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Rental_Family.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null
+    },
+    {
+        "location": "TMDB",
+        "title": "28 años después: El templo de los huesos",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/28_años_después__El_templo_de_los_huesos.jpg",
+        "url_1080p": null,
+        "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null
     },
@@ -14,8 +24,58 @@
         "title": "Avatar: Fuego y ceniza",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Avatar__Fuego_y_ceniza.jpg",
-        "url_1080p": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Avatar__Fuego_y_ceniza.mp4",
-        "url_4k": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Avatar__Fuego_y_ceniza.mp4",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null
+    },
+    {
+        "location": "TMDB",
+        "title": "Predator: Badlands",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Predator__Badlands.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null
+    },
+    {
+        "location": "TMDB",
+        "title": "Gente que conocemos en vacaciones",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Gente_que_conocemos_en_vacaciones.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null
+    },
+    {
+        "location": "TMDB",
+        "title": "Fallout",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Fallout.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null
+    },
+    {
+        "location": "TMDB",
+        "title": "Stranger Things",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Stranger_Things.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null
+    },
+    {
+        "location": "TMDB",
+        "title": "Jujutsu Kaisen",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Jujutsu_Kaisen.jpg",
+        "url_1080p": null,
+        "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null
     }
