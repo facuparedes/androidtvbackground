@@ -9,7 +9,8 @@ from datetime import datetime, timedelta
 
 import requests
 import numpy as np
-from PIL import Image, ImageDraw, ImageFont, ImageFilter
+from rembg import remove, new_session
+from PIL import Image, ImageDraw, ImageFont, ImageFilter, ImageStat
 from dotenv import load_dotenv
 from tqdm import tqdm
 
@@ -49,6 +50,17 @@ BLUR_RADIUS = int(os.getenv("BLUR_RADIUS") or "40")
 IMAGE_QUALITY = int(os.getenv("IMAGE_QUALITY") or "85")
 VIGNETTE_STRENGTH = float(os.getenv("VIGNETTE_STRENGTH") or "2.5")
 MAX_OVERVIEW_LINES = int(os.getenv("MAX_OVERVIEW_LINES") or "4")
+REMBG_SESSION = None
+
+def get_session():
+    global REMBG_SESSION
+    if REMBG_SESSION is None:
+        # u2netp is the lightweight model, much faster for this purpose
+        try:
+            REMBG_SESSION = new_session("u2netp")
+        except Exception as e:
+            print(f"Failed to load rembg session: {e}")
+    return REMBG_SESSION
 
 
 def parse_excluded_list(env_var_name):
@@ -198,6 +210,59 @@ def create_vignette(width, height):
     return Image.fromarray(alpha).filter(ImageFilter.GaussianBlur(radius=60))
 
 
+# def generate_background_card(image):
+#     # Redimensionar la imagen para cubrir todo el ancho sin difuminado
+#     background = image.resize((TARGET_WIDTH, TARGET_HEIGHT), Image.LANCZOS)
+    
+#     # Aplicar un ligero oscurecimiento para mejorar la legibilidad del texto
+#     bg_array = np.array(background, dtype=np.float32)
+#     bg_array = np.clip(bg_array * 0.6, 0, 255).astype(np.uint8)
+    
+#     canvas = Image.new("RGBA", (TARGET_WIDTH, TARGET_HEIGHT), (0, 0, 0, 255))
+#     canvas.paste(Image.fromarray(bg_array), (0, 0))
+    
+#     return canvas.convert("RGB")
+
+def get_subject_center_ai(image):
+    try:
+        # Resize for speed - u2net analysis doesn't need 4k
+        analysis_width = 320
+        scale = analysis_width / image.width
+        analysis_height = int(image.height * scale)
+        small_image = image.resize((analysis_width, analysis_height), Image.LANCZOS)
+        
+        session = get_session()
+        if not session:
+            return image.width / 2
+            
+        # Get the mask of the salient object
+        # only_mask=True returns just the alpha channel
+        mask = remove(small_image, session=session, only_mask=True)
+        
+        # Convert to numpy to find center of mass
+        mask_arr = np.array(mask)
+        
+        # Find indices where mask > 0 (subject exists)
+        # mask is grayscale (H, W) or (H, W, 3) depending on version, 
+        # usually (H, W) for only_mask=True. Safely handle both.
+        if len(mask_arr.shape) == 3:
+            mask_arr = mask_arr[:, :, 0]
+            
+        y_indices, x_indices = np.nonzero(mask_arr > 10) # Threshold to avoid noise
+        
+        if len(x_indices) == 0:
+            return image.width / 2 # No subject found
+            
+        # Calculate mean X position (center of mass horizontally)
+        center_x_small = np.mean(x_indices)
+        
+        return center_x_small / scale
+        
+    except Exception as e:
+        print(f"AI Subject detection error: {e}")
+        return image.width / 2
+
+
 def generate_background_card(image):
     blur_size = (max(TARGET_WIDTH // 20, 1), max(TARGET_HEIGHT // 20, 1))
     
@@ -212,15 +277,62 @@ def generate_background_card(image):
     canvas = Image.new("RGBA", (TARGET_WIDTH, TARGET_HEIGHT), (0, 0, 0, 255))
     canvas.paste(Image.fromarray(bg_array), (0, 0))
     
-    overlay_width = int(TARGET_WIDTH * 0.78)
-    scale_ratio = overlay_width / image.width
-    overlay_height = int(image.height * scale_ratio)
-    overlay = image.resize((overlay_width, overlay_height), Image.LANCZOS).convert("RGBA")
-    
-    vignette_mask = create_vignette(overlay_width, overlay_height)
-    overlay.putalpha(vignette_mask)
-    
-    canvas.paste(overlay, (TARGET_WIDTH - overlay_width, 0), overlay)
+    # Smart positioning logic with AI
+    try:
+        focal_x = get_subject_center_ai(image)
+        scale_ratio = TARGET_HEIGHT / image.height
+        overlay_height = TARGET_HEIGHT
+        overlay_width = int(image.width * scale_ratio)
+        
+        # Ensure we have enough resolution
+        overlay = image.resize((overlay_width, overlay_height), Image.LANCZOS).convert("RGBA")
+        
+        focal_x_scaled = focal_x * scale_ratio
+        
+        # Target: Center of right half (75% of screen width)
+        target_center_x = TARGET_WIDTH * 0.75
+        
+        ideal_x = target_center_x - focal_x_scaled
+        
+        # Constraints
+        # 1. Don't leave gap on RIGHT (Max X usually 0 or negative relative to right edge?)
+        # width > target_width usually. 
+        # If overlay_width < TARGET_WIDTH, we have a problem regardless (black bars).
+        # Assuming overlay_width >= TARGET_WIDTH usually for backdrops? 
+        # Actually backdrops are often landscape but might be slightly wider or narrower depending on aspect.
+        # But we scaled by Height. 16:9 image scaled to 1080h will be 1920w.
+        # If image is wider than 16:9, overlay_width > 1920.
+        
+        min_x = TARGET_WIDTH - overlay_width # Right edge alignment
+        max_x = 0 # Left edge alignment (don't go beyond left edge? optional)
+        
+        # We want to pull left (negative x) as much as needed to center the focal point
+        # But not more than min_x (which is negative or zero)
+        
+        overlay_x = int(max(ideal_x, min_x))
+        
+        # Also ensure we don't start too far right if image is super wide?
+        # If ideal_x > 0, it means we have a gap on the left.
+        # Background is blurred globally, so gap is fine visually (it shows blurred bg).
+        # BUT user wanted "pegada al borde derecho" as fallback.
+        
+        vignette_mask = create_vignette(overlay_width, overlay_height)
+        overlay.putalpha(vignette_mask)
+        
+        canvas.paste(overlay, (overlay_x, 0), overlay)
+        
+    except Exception as e:
+        print(f"Error in AI positioning: {e}")
+        # Fallback to simple right alignment
+        scale_ratio = TARGET_HEIGHT / image.height
+        overlay_height = TARGET_HEIGHT
+        overlay_width = int(image.width * scale_ratio)
+        overlay = image.resize((overlay_width, overlay_height), Image.LANCZOS).convert("RGBA")
+        vignette_mask = create_vignette(overlay_width, overlay_height)
+        overlay.putalpha(vignette_mask)
+        overlay_x = TARGET_WIDTH - overlay_width
+        canvas.paste(overlay, (overlay_x, 0), overlay)
+
     return canvas.convert("RGB")
 
 
@@ -370,6 +482,28 @@ def wrap_overview_text(overview, max_lines=MAX_OVERVIEW_LINES, width=65):
     return wrapped
 
 
+def ensure_logo_contrast(image):
+    if image.mode != 'RGBA':
+        image = image.convert('RGBA')
+    
+    grayscale = image.convert("L")
+    a = image.split()[3]
+    
+    stat = ImageStat.Stat(grayscale, mask=a)
+    if stat.count[0] == 0:
+        return image
+        
+    avg_brightness = stat.mean[0]
+    
+    # If brightness is low (dark logo), make it white
+    if avg_brightness < 60:
+        white = Image.new('RGBA', image.size, (255, 255, 255, 0))
+        white.putalpha(a)
+        return white
+        
+    return image
+
+
 def add_logo_to_overlay(overlay, media_type, item_id, padding_x, info_position, scale_factor, padding_y_logo_to_info):
     logo_path = get_logo(media_type, item_id)
     if not logo_path:
@@ -379,10 +513,44 @@ def add_logo_to_overlay(overlay, media_type, item_id, padding_x, info_position, 
         logo_image = download_image(f"https://image.tmdb.org/t/p/original{logo_path}")
         if not logo_image:
             return False
+
+        # Ensure contrast (make white if too dark)
+        logo_image = ensure_logo_contrast(logo_image)
         
-        max_logo_size = (scale_value(1000, scale_factor), scale_value(500, scale_factor))
-        logo_image.thumbnail(max_logo_size, Image.LANCZOS)
+        # Dimensiones objetivo para el logo
+        target_width = scale_value(800, scale_factor)
+        max_width = scale_value(1200, scale_factor)
+        max_height = scale_value(600, scale_factor)
+        
+        # Calcular el tamaño escalado manteniendo aspect ratio
+        aspect_ratio = logo_image.width / logo_image.height
+        
+        # Si el logo es más ancho que alto (horizontal)
+        if aspect_ratio > 1.5:
+            new_width = min(max_width, max(target_width, logo_image.width))
+            new_height = int(new_width / aspect_ratio)
+        else:
+            # Para logos más cuadrados o verticales
+            new_height = min(max_height, int(target_width / aspect_ratio))
+            new_width = int(new_height * aspect_ratio)
+        
+        # Asegurar que no exceda los límites máximos
+        if new_width > max_width:
+            new_width = max_width
+            new_height = int(new_width / aspect_ratio)
+        if new_height > max_height:
+            new_height = max_height
+            new_width = int(new_height * aspect_ratio)
+        
+        logo_image = logo_image.resize((new_width, new_height), Image.LANCZOS)
         logo_y = info_position[1] - logo_image.height - padding_y_logo_to_info
+        
+        # Add shadow to ensure legibility
+        shadow = Image.new('RGBA', logo_image.size, (0, 0, 0, 160))
+        shadow.putalpha(logo_image.split()[3])
+        # Paste shadow with small offset (scaled if possible, or fixed)
+        overlay.paste(shadow, (padding_x + 2, logo_y + 2), shadow)
+
         logo_rgba = logo_image.convert('RGBA')
         overlay.paste(logo_rgba, (padding_x, logo_y), logo_rgba)
         return True
@@ -401,6 +569,21 @@ def add_tmdb_branding(overlay, custom_position, scale_factor):
         tmdb_logo.thumbnail(max_tmdb_logo_size, Image.LANCZOS)
         tmdb_logo_position = (scale_value(510, scale_factor), 
                             custom_position[1] + scale_value(28, scale_factor))
+        
+        # Crear sombra del logo
+        shadow_offset = 2
+        shadow = Image.new('RGBA', tmdb_logo.size, (0, 0, 0, 0))
+        # Usar el alpha del logo para crear la sombra negra
+        shadow_data = np.array(tmdb_logo)
+        shadow_array = np.zeros_like(shadow_data)
+        shadow_array[:, :, 3] = shadow_data[:, :, 3]  # Copiar el canal alpha
+        shadow = Image.fromarray(shadow_array)
+        
+        # Pegar primero la sombra
+        shadow_position = (tmdb_logo_position[0] + shadow_offset, tmdb_logo_position[1] + shadow_offset)
+        overlay.paste(shadow, shadow_position, shadow)
+        
+        # Luego pegar el logo
         overlay.paste(tmdb_logo, tmdb_logo_position, tmdb_logo)
     except Exception:
         pass
