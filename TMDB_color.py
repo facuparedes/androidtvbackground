@@ -48,7 +48,7 @@ FONT_URL = 'https://github.com/googlefonts/roboto/raw/main/src/hinted/Roboto-Lig
 BLUR_RADIUS = int(os.getenv("BLUR_RADIUS") or "40")
 IMAGE_QUALITY = int(os.getenv("IMAGE_QUALITY") or "85")
 VIGNETTE_STRENGTH = float(os.getenv("VIGNETTE_STRENGTH") or "2.5")
-MAX_OVERVIEW_LINES = int(os.getenv("MAX_OVERVIEW_LINES") or "8")
+MAX_OVERVIEW_LINES = int(os.getenv("MAX_OVERVIEW_LINES") or "4")
 
 
 def parse_excluded_list(env_var_name):
