@@ -21,6 +21,8 @@ PAGES_GITHUB_URL = (os.getenv("PAGES_GITHUB_URL") or "").rstrip('/')
 LANGUAGE = os.getenv("TMDB_LANGUAGE") or "en-US"
 NUMBER_OF_MOVIES = int(os.getenv("TMDB_NUMBER_OF_MOVIES") or "5")
 NUMBER_OF_TVSHOWS = int(os.getenv("TMDB_NUMBER_OF_TVSHOWS") or "5")
+CUSTOM_TEXT = os.getenv("TMDB_CUSTOM_TEXT") or "Now Trending on"
+SHOW_CUSTOM_TEXT = (os.getenv("SHOW_CUSTOM_TEXT") or "true").lower() == "true"
 
 TARGET_WIDTH = int(os.getenv("TARGET_WIDTH") or "1920")
 TARGET_HEIGHT = int(os.getenv("TARGET_HEIGHT") or "1080")
@@ -40,15 +42,25 @@ GENERATE_VIDEO = (os.getenv("GENERATE_VIDEO") or "true").lower() == "true"
 
 BACKGROUND_DIR = os.getenv("OUTPUT_DIR") or "tmdb_backgrounds"
 FONT_PATH = os.getenv("FONT_PATH") or "Roboto-Light.ttf"
+FONT_PATH_REGULAR = os.getenv("FONT_PATH_REGULAR") or "Roboto-Regular.ttf"
 FONT_URL = 'https://github.com/googlefonts/roboto/raw/main/src/hinted/Roboto-Light.ttf'
 
 BLUR_RADIUS = int(os.getenv("BLUR_RADIUS") or "40")
 IMAGE_QUALITY = int(os.getenv("IMAGE_QUALITY") or "85")
 VIGNETTE_STRENGTH = float(os.getenv("VIGNETTE_STRENGTH") or "2.5")
+MAX_OVERVIEW_LINES = int(os.getenv("MAX_OVERVIEW_LINES") or "8")
 
-EXCLUDED_COUNTRIES = os.getenv("EXCLUDED_COUNTRIES", "").split(",") if os.getenv("EXCLUDED_COUNTRIES") else []
-EXCLUDED_KEYWORDS = os.getenv("EXCLUDED_KEYWORDS", "").split(",") if os.getenv("EXCLUDED_KEYWORDS") else []
-EXCLUDED_GENRES = {}
+
+def parse_excluded_list(env_var_name):
+    value = os.getenv(env_var_name, "")
+    if not value:
+        return []
+    return [item.strip().lower() for item in value.split(",") if item.strip()]
+
+
+EXCLUDED_COUNTRIES = parse_excluded_list("EXCLUDED_COUNTRIES")
+EXCLUDED_KEYWORDS = parse_excluded_list("EXCLUDED_KEYWORDS")
+EXCLUDED_GENRES = parse_excluded_list("EXCLUDED_GENRES")
 
 MAX_AIR_DATE = datetime.now() - timedelta(days=MAX_CONTENT_AGE_DAYS)
 
@@ -81,9 +93,10 @@ def get_tmdb(endpoint, params=None):
     params = params or {}
     params['language'] = LANGUAGE
     try:
-        r = session.get(f"{TMDB_BASE_URL}/{endpoint}", params=params, timeout=10)
-        return r.json() if r.status_code == 200 else {}
-    except:
+        response = session.get(f"{TMDB_BASE_URL}/{endpoint}", params=params, timeout=10)
+        response.raise_for_status()
+        return response.json()
+    except Exception:
         return {}
 
 
@@ -93,26 +106,40 @@ def get_genres(media_type):
 
 
 def get_keywords(media_type, media_id):
-    endpoint = f"tv/{media_id}/keywords" if media_type == 'tv' else f"movie/{media_id}/keywords"
-    key = 'results' if media_type == 'tv' else 'keywords'
+    endpoint = f"{media_type}/{media_id}/keywords"
     data = get_tmdb(endpoint)
-    return [k['name'].lower() for k in data.get(key, [])]
+    results_key = 'results' if media_type == 'tv' else 'keywords'
+    return [keyword['name'].lower() for keyword in data.get(results_key, [])]
 
 
 def get_logo(media_type, media_id):
-    data = get_tmdb(f"{media_type}/{media_id}/images", {'include_image_language': f'{LANGUAGE},en,null'})
+    lang_code = LANGUAGE.split("-")[0]
+    data = get_tmdb(f"{media_type}/{media_id}/images", 
+                    {'include_image_language': f'{lang_code},en,null'})
+    
     logos = data.get('logos', [])
     if not logos:
         return None
     
-    match = [l for l in logos if l.get("iso_639_1") == LANGUAGE]
-    if match:
-        return sorted(match, key=lambda x: x.get("vote_average", 0), reverse=True)[0]["file_path"]
+    logos = [logo for logo in logos if not logo.get("file_path", "").lower().endswith('.svg')]
+    if not logos:
+        return None
     
-    return sorted(logos, key=lambda x: x.get("vote_average", 0), reverse=True)[0]["file_path"]
+    def get_best_logo(logo_list):
+        return max(logo_list, key=lambda x: x.get("vote_average", 0))["file_path"]
+    
+    lang_logos = [logo for logo in logos if logo.get("iso_639_1") == lang_code]
+    if lang_logos:
+        return get_best_logo(lang_logos)
+    
+    en_logos = [logo for logo in logos if logo.get("iso_639_1") == "en"]
+    if en_logos:
+        return get_best_logo(en_logos)
+    
+    return get_best_logo(logos)
 
 
-def should_exclude(item, media_type, genres_map):
+def is_content_too_old(item, media_type):
     date_key = 'release_date' if media_type == 'movie' else 'last_air_date'
     date_val = item.get(date_key)
     
@@ -120,70 +147,134 @@ def should_exclude(item, media_type, genres_map):
         details = get_tmdb(f"tv/{item['id']}")
         date_val = details.get('last_air_date')
 
-    if date_val:
-        try:
-            dt = datetime.strptime(date_val, "%Y-%m-%d")
-            if dt < MAX_AIR_DATE:
-                return True
-        except:
-            pass
-            
+    if not date_val:
+        return False
+    
+    try:
+        content_date = datetime.strptime(date_val, "%Y-%m-%d")
+        return content_date < MAX_AIR_DATE
+    except ValueError:
+        return False
+
+
+def is_country_excluded(item):
+    if not EXCLUDED_COUNTRIES:
+        return False
     countries = [c.lower() for c in item.get('origin_country', [])]
-    item_genres = [genres_map.get(gid, '') for gid in item.get('genre_ids', [])]
-    
-    for c in countries:
-        if c in EXCLUDED_COUNTRIES:
-            bad_genres = EXCLUDED_GENRES.get(c, [])
-            if '*' in bad_genres or any(g in bad_genres for g in item_genres):
-                return True
-                
-    if EXCLUDED_KEYWORDS:
-        keys = get_keywords(media_type, item['id'])
-        if any(k in keys for k in EXCLUDED_KEYWORDS):
-            return True
-            
-    return False
+    return any(country in EXCLUDED_COUNTRIES for country in countries)
 
 
-def create_vignette(w, h):
-    y, x = np.ogrid[0:h, 0:w]
+def has_excluded_genre(item, genres_map):
+    if not EXCLUDED_GENRES:
+        return False
+    item_genres = [genres_map.get(gid, '').lower() for gid in item.get('genre_ids', [])]
+    return any(genre in EXCLUDED_GENRES for genre in item_genres)
+
+
+def has_excluded_keyword(item, media_type):
+    if not EXCLUDED_KEYWORDS:
+        return False
+    keywords = get_keywords(media_type, item['id'])
+    return any(keyword in keywords for keyword in EXCLUDED_KEYWORDS)
+
+
+def should_exclude(item, media_type, genres_map):
+    return (is_content_too_old(item, media_type) or
+            is_country_excluded(item) or
+            has_excluded_genre(item, genres_map) or
+            has_excluded_keyword(item, media_type))
+
+
+def create_vignette(width, height):
+    y, x = np.ogrid[0:height, 0:width]
     fade_ratio = 0.3
-    rx, ry = w * fade_ratio, h * fade_ratio
+    fade_width = width * fade_ratio
+    fade_height = height * fade_ratio
     
-    dist_x = np.clip(x / rx, 0, 1)
-    dist_y = np.clip((h - y - 150) / ry, 0, 1)
+    dist_x = np.clip(x / fade_width, 0, 1)
+    dist_y = np.clip((height - y - 150) / fade_height, 0, 1)
     alpha = (np.minimum(dist_x, dist_y) ** VIGNETTE_STRENGTH * 255).astype(np.uint8)
     
-    mask = Image.fromarray(alpha)
-    return mask.filter(ImageFilter.GaussianBlur(radius=60))
+    return Image.fromarray(alpha).filter(ImageFilter.GaussianBlur(radius=60))
 
 
-def generate_background_card(img_pil):
-    bg_w, bg_h = TARGET_WIDTH, TARGET_HEIGHT
-    small_w = max(bg_w // 20, 1)
-    small_h = max(bg_h // 20, 1)
+def generate_background_card(image):
+    blur_size = (max(TARGET_WIDTH // 20, 1), max(TARGET_HEIGHT // 20, 1))
     
-    bg_small = img_pil.resize((small_w, small_h), Image.LANCZOS)
-    bg_small = bg_small.filter(ImageFilter.GaussianBlur(radius=BLUR_RADIUS))
-    bg_base = bg_small.resize((bg_w, bg_h), Image.BICUBIC)
+    blurred = image.resize(blur_size, Image.LANCZOS)
+    blurred = blurred.filter(ImageFilter.GaussianBlur(radius=BLUR_RADIUS))
+    background = blurred.resize((TARGET_WIDTH, TARGET_HEIGHT), Image.BICUBIC)
     
-    arr = np.array(bg_base, dtype=np.float32)
-    noise = np.random.uniform(-16, 16, arr.shape)
-    arr = np.clip(arr * 0.4 + noise, 0, 255).astype(np.uint8)
+    bg_array = np.array(background, dtype=np.float32)
+    noise = np.random.uniform(-16, 16, bg_array.shape)
+    bg_array = np.clip(bg_array * 0.4 + noise, 0, 255).astype(np.uint8)
     
-    canvas = Image.new("RGBA", (bg_w, bg_h), (0, 0, 0, 255))
-    canvas.paste(Image.fromarray(arr), (0, 0))
+    canvas = Image.new("RGBA", (TARGET_WIDTH, TARGET_HEIGHT), (0, 0, 0, 255))
+    canvas.paste(Image.fromarray(bg_array), (0, 0))
     
-    target_img_w = int(TARGET_WIDTH * 0.78)
-    ratio = target_img_w / img_pil.width
-    new_h = int(img_pil.height * ratio)
-    img_resized = img_pil.resize((target_img_w, new_h), Image.LANCZOS).convert("RGBA")
+    overlay_width = int(TARGET_WIDTH * 0.78)
+    scale_ratio = overlay_width / image.width
+    overlay_height = int(image.height * scale_ratio)
+    overlay = image.resize((overlay_width, overlay_height), Image.LANCZOS).convert("RGBA")
     
-    mask = create_vignette(target_img_w, img_resized.height)
-    img_resized.putalpha(mask)
+    vignette_mask = create_vignette(overlay_width, overlay_height)
+    overlay.putalpha(vignette_mask)
     
-    canvas.paste(img_resized, (TARGET_WIDTH - target_img_w, 0), img_resized)
+    canvas.paste(overlay, (TARGET_WIDTH - overlay_width, 0), overlay)
     return canvas.convert("RGB")
+
+
+def cleanup_temp_files(*file_paths):
+    for file_path in file_paths:
+        if os.path.exists(file_path):
+            os.remove(file_path)
+
+
+def calculate_pan_coordinates(width, zoomed_width):
+    pan_range = zoomed_width - width
+    start_x = pan_range * VIDEO_PAN_START_MARGIN
+    end_x = pan_range * VIDEO_PAN_END_MARGIN
+    
+    is_forward = np.random.choice([True, False])
+    return (start_x, end_x) if is_forward else (end_x, start_x)
+
+
+def build_ffmpeg_filter(width, height, x_start, x_end):
+    total_frames = VIDEO_DURATION * VIDEO_FPS
+    x_expr = f"if(eq(n,0),{x_start},{x_start}+({x_end}-{x_start})*n/{total_frames})"
+    
+    fade_duration = 2
+    fade_out_start = VIDEO_DURATION - fade_duration - 0.1
+    
+    return (
+        f"[0:v]crop=w={width}:h={height}:x='{x_expr}':y='(ih-oh)/2'[bg];"
+        f"[bg][1:v]overlay=0:0:format=auto[combined];"
+        f"[combined]fade=t=in:st=0:d={fade_duration}:color=0x000000,"
+        f"fade=t=out:st={fade_out_start}:d={fade_duration}:color=0x000000[out]"
+    )
+
+
+def build_ffmpeg_command(temp_bg, temp_ov, filter_str, output_path):
+    return [
+        "ffmpeg", "-y", "-loglevel", "error",
+        "-framerate", str(VIDEO_FPS),
+        "-loop", "1", "-i", temp_bg,
+        "-framerate", str(VIDEO_FPS),
+        "-loop", "1", "-i", temp_ov,
+        "-filter_complex", filter_str,
+        "-map", "[out]",
+        "-t", str(VIDEO_DURATION),
+        "-c:v", "libx264",
+        "-preset", VIDEO_PRESET,
+        "-crf", str(VIDEO_CRF),
+        "-maxrate", "2M",
+        "-bufsize", "4M",
+        "-pix_fmt", "yuv420p",
+        "-vsync", "cfr",
+        "-movflags", "+faststart",
+        "-threads", "0",
+        output_path
+    ]
 
 
 def create_video_ffmpeg(bg_image, overlay_image, output_path):
@@ -191,59 +282,17 @@ def create_video_ffmpeg(bg_image, overlay_image, output_path):
     temp_ov = output_path.replace(".mp4", "_temp_ov.png")
     
     try:
-        w, h = bg_image.size
-        zoom = VIDEO_ZOOM
-        zw, zh = int(w * zoom), int(h * zoom)
+        width, height = bg_image.size
+        zoomed_size = (int(width * VIDEO_ZOOM), int(height * VIDEO_ZOOM))
         
-        # PNG para evitar artifacts de compresión en el movimiento
-        bg_image.resize((zw, zh), Image.LANCZOS).save(temp_bg, optimize=False)
+        bg_image.resize(zoomed_size, Image.LANCZOS).save(temp_bg, optimize=False)
         overlay_image.save(temp_ov, optimize=False)
         
-        diff_w = zw - w
-        # Márgenes configurables para controlar la distancia del movimiento
-        min_x = diff_w * VIDEO_PAN_START_MARGIN
-        max_x = diff_w * VIDEO_PAN_END_MARGIN
-        dist = max_x - min_x
+        x_start, x_end = calculate_pan_coordinates(width, zoomed_size[0])
+        filter_str = build_ffmpeg_filter(width, height, x_start, x_end)
+        cmd = build_ffmpeg_command(temp_bg, temp_ov, filter_str, output_path)
         
-        # Dirección aleatoria del pan
-        direction = np.random.choice([True, False])
-        x_start = min_x if direction else max_x
-        x_end = max_x if direction else min_x
-        
-        total_frames = VIDEO_DURATION * VIDEO_FPS
-        
-        # Crop animado basado en frames (n) para movimiento perfectamente lineal
-        # Usa 'n' (frame number) en lugar de 't' (tiempo) para evitar interpolación
-        x_expr = f"if(eq(n,0),{x_start},{x_start}+({x_end}-{x_start})*n/{total_frames})"
-        
-        filter_str = (
-            f"[0:v]crop=w={w}:h={h}:x='{x_expr}':y='(ih-oh)/2'[bg];"
-            f"[bg][1:v]overlay=0:0:format=auto[combined];"
-            f"[combined]fade=t=in:st=0:d=2:color=0x000000,fade=t=out:st={VIDEO_DURATION-2.1}:d=2:color=0x000000[out]"
-        )
-        
-        cmd = [
-            "ffmpeg", "-y", "-loglevel", "error",
-            "-framerate", str(VIDEO_FPS),  # FPS en el input para timing correcto
-            "-loop", "1", "-i", temp_bg,
-            "-framerate", str(VIDEO_FPS),
-            "-loop", "1", "-i", temp_ov,
-            "-filter_complex", filter_str,
-            "-map", "[out]",
-            "-t", str(VIDEO_DURATION),
-            "-c:v", "libx264",
-            "-preset", VIDEO_PRESET,
-            "-crf", str(VIDEO_CRF),
-            "-maxrate", "2M",  # Limitar bitrate máximo para reducir tamaño
-            "-bufsize", "4M",  # Buffer para control de bitrate
-            "-pix_fmt", "yuv420p",
-            "-vsync", "cfr",  # Frame rate constante - CRÍTICO para evitar stuttering
-            "-movflags", "+faststart",
-            "-threads", "0",
-            output_path
-        ]
-        
-        result = subprocess.run(cmd, capture_output=True, check=True, timeout=120)
+        subprocess.run(cmd, capture_output=True, check=True, timeout=120)
         return True
     
     except subprocess.TimeoutExpired:
@@ -256,9 +305,7 @@ def create_video_ffmpeg(bg_image, overlay_image, output_path):
         print(f"Video creation error: {e}")
         return False
     finally:
-        for f in [temp_bg, temp_ov]:
-            if os.path.exists(f):
-                os.remove(f)
+        cleanup_temp_files(temp_bg, temp_ov)
 
 
 def clean_filename(s):
@@ -267,28 +314,162 @@ def clean_filename(s):
 
 def download_image(url, timeout=10):
     try:
-        resp = session.get(url, timeout=timeout)
-        if resp.status_code == 200:
-            return Image.open(BytesIO(resp.content))
-    except:
-        pass
-    return None
+        response = session.get(url, timeout=timeout)
+        if response.status_code != 200:
+            return None
+        
+        image_data = BytesIO(response.content)
+        image = Image.open(image_data)
+        image.verify()
+        return Image.open(BytesIO(response.content))
+    except Exception as e:
+        print(f"Failed to download/validate image from {url}: {e}")
+        return None
+
+
+def draw_text_with_shadow(draw, position, text, font, shadow_offset=2):
+    draw.text((position[0] + shadow_offset, position[1] + shadow_offset), 
+             text, font=font, fill="black")
+    draw.text(position, text, font=font, fill="white")
+
+
+def scale_value(value, scale_factor):
+    return int(value * scale_factor)
+
+
+def create_scaled_font(font_path, size, scale_factor):
+    return ImageFont.truetype(font_path, size=scale_value(size, scale_factor))
 
 
 def fetch_media_details(item, media_type):
     item_id = item['id']
+    details = get_tmdb(f"{media_type}/{item_id}")
+    
     if media_type == 'movie':
-        d = get_tmdb(f"movie/{item_id}")
-        r = d.get('runtime', 0)
-        return f"{r//60}h{r%60}min" if r else "N/A"
-    else:
-        d = get_tmdb(f"tv/{item_id}")
-        cnt = d.get('number_of_seasons', 0)
-        return f"{cnt} Season{'s' if cnt != 1 else ''}" if cnt else "N/A"
+        runtime = details.get('runtime', 0)
+        return f"{runtime//60}h{runtime%60}min" if runtime else "N/A"
+    
+    season_count = details.get('number_of_seasons', 0)
+    season_label = "Season" if season_count == 1 else "Seasons"
+    return f"{season_count} {season_label}" if season_count else "N/A"
+
+
+def build_metadata_text(item, media_type, genres_map):
+    year = (item.get('release_date') or item.get('first_air_date') or "N/A")[:4]
+    rating = round(item.get('vote_average', 0), 1)
+    genre_names = [genres_map[gid] for gid in item.get('genre_ids', []) if gid in genres_map]
+    genre_str = ', '.join(genre_names)
+    extra_info = fetch_media_details(item, media_type)
+    return f"{genre_str}  •  {year}  •  {extra_info}  •  TMDB: {rating}"
+
+
+def wrap_overview_text(overview, max_lines=MAX_OVERVIEW_LINES, width=65):
+    wrapped = "\n".join(
+        textwrap.wrap(overview, width=width, max_lines=max_lines, placeholder=" ...")
+    )
+    return wrapped
+
+
+def add_logo_to_overlay(overlay, media_type, item_id, padding_x, info_position, scale_factor, padding_y_logo_to_info):
+    logo_path = get_logo(media_type, item_id)
+    if not logo_path:
+        return False
+    
+    try:
+        logo_image = download_image(f"https://image.tmdb.org/t/p/original{logo_path}")
+        if not logo_image:
+            return False
+        
+        max_logo_size = (scale_value(1000, scale_factor), scale_value(500, scale_factor))
+        logo_image.thumbnail(max_logo_size, Image.LANCZOS)
+        logo_y = info_position[1] - logo_image.height - padding_y_logo_to_info
+        logo_rgba = logo_image.convert('RGBA')
+        overlay.paste(logo_rgba, (padding_x, logo_y), logo_rgba)
+        return True
+    except Exception as e:
+        return False
+
+
+def add_tmdb_branding(overlay, custom_position, scale_factor):
+    tmdb_logo_path = os.path.join(os.path.dirname(__file__), "tmdblogo.png")
+    if not os.path.exists(tmdb_logo_path):
+        return
+    
+    try:
+        tmdb_logo = Image.open(tmdb_logo_path).convert('RGBA')
+        max_tmdb_logo_size = (scale_value(90, scale_factor), scale_value(90, scale_factor))
+        tmdb_logo.thumbnail(max_tmdb_logo_size, Image.LANCZOS)
+        tmdb_logo_position = (scale_value(510, scale_factor), 
+                            custom_position[1] + scale_value(30, scale_factor))
+        overlay.paste(tmdb_logo, tmdb_logo_position, tmdb_logo)
+    except Exception:
+        pass
+
+
+def create_media_overlay(item, media_type, genres_map, background_size, scale_factor):
+    overlay = Image.new("RGBA", background_size, (0, 0, 0, 0))
+    draw = ImageDraw.Draw(overlay)
+    
+    font_title = create_scaled_font(FONT_PATH, 190, scale_factor)
+    font_info = create_scaled_font(FONT_PATH_REGULAR, 60, scale_factor)
+    font_overview = create_scaled_font(FONT_PATH, 60, scale_factor)
+    
+    padding_x = scale_value(210, scale_factor)
+    padding_y_logo_to_info = scale_value(100, scale_factor)
+    padding_y_info_to_summary = scale_value(50, scale_factor)
+    padding_y_summary_to_custom = scale_value(50, scale_factor)
+    
+    title_position = (scale_value(200, scale_factor), scale_value(520, scale_factor))
+    
+    name = item.get('title') if media_type == 'movie' else item.get('name')
+    meta_text = build_metadata_text(item, media_type, genres_map)
+    wrapped_overview = wrap_overview_text(item.get('overview', ''))
+    
+    info_bbox = draw.textbbox((0, 0), meta_text, font=font_info)
+    info_height = info_bbox[3] - info_bbox[1]
+    
+    overview_bbox = draw.textbbox((0, 0), wrapped_overview, font=font_overview)
+    summary_height = overview_bbox[3] - overview_bbox[1]
+    
+    base_y = scale_value(750, scale_factor)
+    info_position = (padding_x, base_y)
+    overview_position = (padding_x, base_y + info_height + padding_y_info_to_summary)
+    custom_position = (padding_x, overview_position[1] + summary_height + padding_y_summary_to_custom)
+    
+    logo_drawn = add_logo_to_overlay(overlay, media_type, item['id'], padding_x, info_position, scale_factor, padding_y_logo_to_info)
+    
+    if not logo_drawn:
+        draw_text_with_shadow(draw, title_position, name, font_title)
+    
+    draw_text_with_shadow(draw, info_position, meta_text, font_info)
+    draw_text_with_shadow(draw, overview_position, wrapped_overview, font_overview)
+    
+    if SHOW_CUSTOM_TEXT:
+        draw_text_with_shadow(draw, custom_position, CUSTOM_TEXT, font_overview)
+        add_tmdb_branding(overlay, custom_position, scale_factor)
+    
+    return overlay
+
+
+def create_json_metadata(name, clean_title, image_file, video_file, base_url):
+    return {
+        "location": "TMDB",
+        "title": name,
+        "author": "TMDB",
+        "url_img": f"{base_url}/{clean_title}.jpg" if os.path.exists(image_file) else None,
+        "url_1080p": f"{base_url}/{clean_title}.mp4" if os.path.exists(video_file) else None,
+        "url_4k": f"{base_url}/{clean_title}.mp4" if os.path.exists(video_file) else None,
+        "url_1080p_hdr": None,
+        "url_4k_hdr": None
+    }
+
+
+def save_final_image(background, overlay, output_path):
+    final_image = Image.alpha_composite(background.convert("RGBA"), overlay).convert("RGB")
+    final_image.save(output_path, quality=IMAGE_QUALITY, optimize=True, progressive=True)
 
 
 def process_media(item, media_type, genres_map):
-    item_id = item['id']
     name = item.get('title') if media_type == 'movie' else item.get('name')
     if not name:
         return None
@@ -302,103 +483,32 @@ def process_media(item, media_type, genres_map):
         return None
     
     clean_title = clean_filename(name)
-    f_img = os.path.join(BACKGROUND_DIR, f"{clean_title}.jpg")
-    f_vid = os.path.join(BACKGROUND_DIR, f"{clean_title}.mp4")
+    image_file = os.path.join(BACKGROUND_DIR, f"{clean_title}.jpg")
+    video_file = os.path.join(BACKGROUND_DIR, f"{clean_title}.mp4")
+    base_url = PAGES_GITHUB_URL or "."
     
-    base = PAGES_GITHUB_URL if PAGES_GITHUB_URL else "."
-    
-    # Check if files already exist
-    if os.path.exists(f_img) and (not GENERATE_VIDEO or os.path.exists(f_vid)):
-        json_data = {
-            "location": "TMDB",
-            "title": name,
-            "author": "TMDB",
-            "url_img": f"{base}/{clean_title}.jpg" if os.path.exists(f_img) else None,
-            "url_1080p": f"{base}/{clean_title}.mp4" if os.path.exists(f_vid) else None,
-            "url_4k": f"{base}/{clean_title}.mp4" if os.path.exists(f_vid) else None,
-            "url_1080p_hdr": None,
-            "url_4k_hdr": None
-        }
+    if os.path.exists(image_file) and (not GENERATE_VIDEO or os.path.exists(video_file)):
+        json_data = create_json_metadata(name, clean_title, image_file, video_file, base_url)
         return clean_title, json_data
 
     try:
-        src_img = download_image(f"https://image.tmdb.org/t/p/original{backdrop}")
-        if not src_img:
+        source_image = download_image(f"https://image.tmdb.org/t/p/original{backdrop}")
+        if not source_image:
             return None
         
-        bg_card = generate_background_card(src_img)
-        overlay = Image.new("RGBA", bg_card.size, (0, 0, 0, 0))
-        draw = ImageDraw.Draw(overlay)
+        background = generate_background_card(source_image)
+        scale_factor = TARGET_HEIGHT / 2160.0
+        overlay = create_media_overlay(item, media_type, genres_map, background.size, scale_factor)
         
-        s_factor = TARGET_HEIGHT / 2160.0
-        font_t = ImageFont.truetype(FONT_PATH, size=int(190 * s_factor))
-        font_o = ImageFont.truetype(FONT_PATH, size=int(50 * s_factor))
+        save_final_image(background, overlay, image_file)
         
-        padding_x = int(210 * s_factor)
-        
-        year = (item.get('release_date') or item.get('first_air_date') or "N/A")[:4]
-        rating = round(item.get('vote_average', 0), 1)
-        genre_str = ', '.join([genres_map.get(g, '') for g in item.get('genre_ids', []) if g in genres_map])
-        extra = fetch_media_details(item, media_type)
-        meta_text = f"{genre_str}  •  {year}  •  {extra}  •  TMDB: {rating}"
-        
-        wrap_width = 65
-        overview_lines = textwrap.wrap(item.get('overview', ''), width=wrap_width, max_lines=8, placeholder=" ...")
-        
-        logo_path = get_logo(media_type, item_id)
-        logo_drawn = False
-        current_y = int(420 * s_factor)
-        
-        if logo_path:
-            l_img = download_image(f"https://image.tmdb.org/t/p/original{logo_path}")
-            if l_img:
-                lw, lh = int(1000 * s_factor), int(500 * s_factor)
-                l_img.thumbnail((lw, lh), Image.LANCZOS)
-                overlay.paste(l_img.convert('RGBA'), (padding_x, current_y), l_img.convert('RGBA'))
-                current_y += l_img.height + int(25 * s_factor)
-                logo_drawn = True
-            
-        if not logo_drawn:
-            draw.text((padding_x + 2, current_y + 2), name, font=font_t, fill="black")
-            draw.text((padding_x, current_y), name, font=font_t, fill="white")
-            bbox = font_t.getbbox(name)
-            current_y += (bbox[3] - bbox[1]) + int(25 * s_factor)
-
-        current_y += int(50 * s_factor)
-        draw.text((padding_x + 2, current_y + 2), meta_text, font=font_o, fill="black")
-        draw.text((padding_x, current_y), meta_text, font=font_o, fill="white")
-        current_y += int(80 * s_factor)
-
-        for line in overview_lines:
-            draw.text((padding_x + 2, current_y + 2), line, font=font_o, fill="black")
-            draw.text((padding_x, current_y), line, font=font_o, fill="white")
-            bbox = font_o.getbbox(line)
-            current_y += (bbox[3] - bbox[1]) + int(10 * s_factor)
-
-        final = Image.alpha_composite(bg_card.convert("RGBA"), overlay).convert("RGB")
-        final.save(f_img, quality=IMAGE_QUALITY, optimize=True, progressive=True)
-        
-        video_created = False
-        if GENERATE_VIDEO and not os.path.exists(f_vid):
-            is_ok = create_video_ffmpeg(bg_card, overlay, f_vid)
-            if is_ok:
-                video_created = True
-            else:
+        if GENERATE_VIDEO and not os.path.exists(video_file):
+            video_success = create_video_ffmpeg(background, overlay, video_file)
+            if not video_success:
                 print(f"Video failed: {name}")
 
-        # Create JSON with only existing file URLs
-        json_data = {
-            "location": "TMDB",
-            "title": name,
-            "author": "TMDB",
-            "url_img": f"{base}/{clean_title}.jpg" if os.path.exists(f_img) else None,
-            "url_1080p": f"{base}/{clean_title}.mp4" if os.path.exists(f_vid) else None,
-            "url_4k": f"{base}/{clean_title}.mp4" if os.path.exists(f_vid) else None,
-            "url_1080p_hdr": None,
-            "url_4k_hdr": None
-        }
-
         print(f"Processed: {name}")
+        json_data = create_json_metadata(name, clean_title, image_file, video_file, base_url)
         return clean_title, json_data
 
     except Exception as e:
@@ -406,50 +516,95 @@ def process_media(item, media_type, genres_map):
         return None
 
 
-def main():
-    setup_environment()
+def filter_valid_items(items, media_type, genres_map, max_count):
+    valid_items = []
+    name_key = 'title' if media_type == 'movie' else 'name'
     
-    print("Fetching trending content...")
-    movies_raw = get_tmdb('trending/movie/week').get('results', [])[:NUMBER_OF_MOVIES]
-    tv_raw = get_tmdb('trending/tv/week').get('results', [])[:NUMBER_OF_TVSHOWS]
+    for item in items:
+        if not should_exclude(item, media_type, genres_map):
+            valid_items.append(item)
+            if len(valid_items) >= max_count:
+                break
+        else:
+            print(f"Excluded: {item.get(name_key, 'Unknown')}")
     
-    movie_genres = get_genres('movie')
-    tv_genres = get_genres('tv')
-    
-    tasks = []
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS_PROCESS) as executor:
-        for m in movies_raw:
-            tasks.append(executor.submit(process_media, m, 'movie', movie_genres))
-        for t in tv_raw:
-            tasks.append(executor.submit(process_media, t, 'tv', tv_genres))
-            
-        valid_files = set()
-        json_output = []
-        
-        for future in tqdm(as_completed(tasks), total=len(tasks), desc="Processing"):
-            try:
-                result = future.result()
-                if result:
-                    clean_name, j_data = result
-                    valid_files.add(f"{clean_name}.jpg")
-                    valid_files.add(f"{clean_name}.mp4")
-                    json_output.append(j_data)
-            except Exception as e:
-                print(f"Task error: {e}")
+    return valid_items
 
+
+def submit_processing_tasks(executor, valid_movies, valid_tv, movie_genres, tv_genres):
+    tasks = []
+    for movie in valid_movies:
+        tasks.append(executor.submit(process_media, movie, 'movie', movie_genres))
+    for tv_show in valid_tv:
+        tasks.append(executor.submit(process_media, tv_show, 'tv', tv_genres))
+    return tasks
+
+
+def collect_results(tasks):
+    valid_files = set()
+    json_output = []
+    
+    for future in tqdm(as_completed(tasks), total=len(tasks), desc="Processing"):
+        try:
+            result = future.result()
+            if result:
+                clean_name, json_data = result
+                valid_files.add(f"{clean_name}.jpg")
+                valid_files.add(f"{clean_name}.mp4")
+                json_output.append(json_data)
+        except Exception as e:
+            print(f"Task error: {e}")
+    
+    return valid_files, json_output
+
+
+def save_json_output(json_output):
     json_file = os.path.join(BACKGROUND_DIR, "videos.json")
     with open(json_file, 'w', encoding='utf-8') as f:
         json.dump(json_output, f, indent=4, ensure_ascii=False)
     print(f"Saved: {json_file}")
-        
+
+
+def cleanup_old_files(valid_files):
     for filename in os.listdir(BACKGROUND_DIR):
+        if filename == 'videos.json':
+            continue
         if (filename.endswith('.jpg') or filename.endswith('.mp4')) and filename not in valid_files:
             try:
                 os.remove(os.path.join(BACKGROUND_DIR, filename))
                 print(f"Cleaned: {filename}")
-            except:
+            except Exception:
                 pass
-            
+
+
+def main():
+    setup_environment()
+    
+    print("Fetching trending content...")
+    
+    fetch_multiplier = 3
+    max_fetch_limit = 20
+    max_movies = min(NUMBER_OF_MOVIES * fetch_multiplier, max_fetch_limit)
+    max_tv = min(NUMBER_OF_TVSHOWS * fetch_multiplier, max_fetch_limit)
+    
+    all_movies = get_tmdb('trending/movie/week').get('results', [])[:max_movies]
+    all_tv = get_tmdb('trending/tv/week').get('results', [])[:max_tv]
+    
+    movie_genres = get_genres('movie')
+    tv_genres = get_genres('tv')
+    
+    valid_movies = filter_valid_items(all_movies, 'movie', movie_genres, NUMBER_OF_MOVIES)
+    valid_tv = filter_valid_items(all_tv, 'tv', tv_genres, NUMBER_OF_TVSHOWS)
+    
+    print(f"Valid content: {len(valid_movies)} movies, {len(valid_tv)} TV shows")
+    
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS_PROCESS) as executor:
+        tasks = submit_processing_tasks(executor, valid_movies, valid_tv, movie_genres, tv_genres)
+        valid_files, json_output = collect_results(tasks)
+
+    save_json_output(json_output)
+    cleanup_old_files(valid_files)
+    
     print("Done")
 
 

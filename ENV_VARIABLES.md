@@ -10,11 +10,13 @@
 
 ## Content Settings
 
-| Variable                 | Default | Description                            |
-| ------------------------ | ------- | -------------------------------------- |
-| `TMDB_NUMBER_OF_MOVIES`  | `5`     | Number of trending movies to process   |
-| `TMDB_NUMBER_OF_TVSHOWS` | `5`     | Number of trending TV shows to process |
-| `MAX_CONTENT_AGE_DAYS`   | `90`    | Maximum age of content in days         |
+| Variable                 | Default           | Description                                      |
+| ------------------------ | ----------------- | ------------------------------------------------ |
+| `TMDB_NUMBER_OF_MOVIES`  | `5`               | Number of trending movies to process             |
+| `TMDB_NUMBER_OF_TVSHOWS` | `5`               | Number of trending TV shows to process           |
+| `MAX_CONTENT_AGE_DAYS`   | `90`              | Maximum age of content in days                   |
+| `TMDB_CUSTOM_TEXT`       | `Now Trending on` | Custom text to display with TMDB logo            |
+| `SHOW_CUSTOM_TEXT`       | `true`            | Set to `false` to hide custom text and TMDB logo |
 
 ## Output Settings
 
@@ -47,11 +49,12 @@
 
 ## Image Quality
 
-| Variable            | Default | Description                    |
-| ------------------- | ------- | ------------------------------ |
-| `IMAGE_QUALITY`     | `85`    | JPEG quality (0-100)           |
-| `BLUR_RADIUS`       | `40`    | Background blur intensity      |
-| `VIGNETTE_STRENGTH` | `2.5`   | Vignette effect strength (0-5) |
+| Variable             | Default | Description                        |
+| -------------------- | ------- | ---------------------------------- |
+| `IMAGE_QUALITY`      | `85`    | JPEG quality (0-100)               |
+| `BLUR_RADIUS`        | `40`    | Background blur intensity          |
+| `VIGNETTE_STRENGTH`  | `2.5`   | Vignette effect strength (0-5)     |
+| `MAX_OVERVIEW_LINES` | `8`     | Maximum lines for overview/summary |
 
 ## Performance Tuning
 
@@ -69,10 +72,11 @@
 
 ## Content Filtering
 
-| Variable             | Default | Description                                         |
-| -------------------- | ------- | --------------------------------------------------- |
-| `EXCLUDED_COUNTRIES` | Empty   | Comma-separated ISO country codes (e.g., `jp,kr`)   |
-| `EXCLUDED_KEYWORDS`  | Empty   | Comma-separated keywords to exclude (e.g., `adult`) |
+| Variable             | Default | Description                                                 |
+| -------------------- | ------- | ----------------------------------------------------------- |
+| `EXCLUDED_COUNTRIES` | Empty   | Comma-separated ISO country codes (e.g., `jp,kr`)           |
+| `EXCLUDED_GENRES`    | Empty   | Comma-separated genre names (e.g., `animation,documentary`) |
+| `EXCLUDED_KEYWORDS`  | Empty   | Comma-separated keywords to exclude (e.g., `adult`)         |
 
 ## Example Configuration
 
