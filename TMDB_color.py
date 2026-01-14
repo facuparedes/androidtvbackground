@@ -400,7 +400,7 @@ def add_tmdb_branding(overlay, custom_position, scale_factor):
         max_tmdb_logo_size = (scale_value(90, scale_factor), scale_value(90, scale_factor))
         tmdb_logo.thumbnail(max_tmdb_logo_size, Image.LANCZOS)
         tmdb_logo_position = (scale_value(510, scale_factor), 
-                            custom_position[1] + scale_value(30, scale_factor))
+                            custom_position[1] + scale_value(28, scale_factor))
         overlay.paste(tmdb_logo, tmdb_logo_position, tmdb_logo)
     except Exception:
         pass
