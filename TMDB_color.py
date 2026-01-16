@@ -3,6 +3,7 @@ import shutil
 import json
 import textwrap
 import subprocess
+from urllib.parse import quote_plus
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from io import BytesIO
 from datetime import datetime, timedelta
@@ -25,6 +26,9 @@ NUMBER_OF_MOVIES = int(os.getenv("TMDB_NUMBER_OF_MOVIES") or "5")
 NUMBER_OF_TVSHOWS = int(os.getenv("TMDB_NUMBER_OF_TVSHOWS") or "5")
 CUSTOM_TEXT = os.getenv("TMDB_CUSTOM_TEXT") or "Now Trending on"
 SHOW_CUSTOM_TEXT = (os.getenv("SHOW_CUSTOM_TEXT") or "true").lower() == "true"
+STREAMING_TEXT = os.getenv("STREAMING_TEXT") or "Available on"
+SHOW_STREAMING_TEXT = (os.getenv("SHOW_STREAMING_TEXT") or "true").lower() == "true"
+SHOW_STREAMING_LOGOS = (os.getenv("SHOW_STREAMING_LOGOS") or "true").lower() == "true"
 
 TARGET_WIDTH = int(os.getenv("TARGET_WIDTH") or "1920")
 TARGET_HEIGHT = int(os.getenv("TARGET_HEIGHT") or "1080")
@@ -52,6 +56,7 @@ IMAGE_QUALITY = int(os.getenv("IMAGE_QUALITY") or "85")
 VIGNETTE_STRENGTH = float(os.getenv("VIGNETTE_STRENGTH") or "2.5")
 MAX_OVERVIEW_LINES = int(os.getenv("MAX_OVERVIEW_LINES") or "4")
 REMBG_SESSION = None
+PRELOADED_STREAMING_LOGOS = {}
 
 def get_session():
     global REMBG_SESSION
@@ -113,6 +118,70 @@ def get_tmdb(endpoint, params=None):
         return response.json()
     except Exception:
         return {}
+
+
+STREAMING_CONFIG = {
+    "Netflix": {
+        "keys": ["Netflix"], 
+        "scheme": "nflx://search?query={}",
+        "logo_url": "https://images.justwatch.com/icon_wide/321739379/s160/netflix.jpeg"
+    },
+    "Disney+": {
+        "keys": ["Disney"], 
+        "scheme": "disneyplus://search?q={}",
+        "logo_url": "https://images.justwatch.com/icon_wide/322151142/s160/disneyplus.jpeg"
+    },
+    "Prime Video": {
+        "keys": ["Amazon"], 
+        "scheme": "https://www.amazon.com/gp/video/search?phrase={}",
+        "logo_url": "https://images.justwatch.com/icon_wide/322556148/s160/amazonprimevideo.jpeg"
+    },
+    "HBO Max": {
+        "keys": ["Max"], 
+        "scheme": "hbomax://search?q={}",
+        "logo_url": "https://images.justwatch.com/icon_wide/332885683/s160/max.jpeg"
+    },
+    "Apple TV+": {
+        "keys": ["Apple"], 
+        "scheme": "https://tv.apple.com/search?term={}",
+        "logo_url": "https://images.justwatch.com/icon_wide/338253918/s160/appletvplus.jpeg"
+    },
+    "Paramount+": {
+        "keys": ["Paramount"], 
+        "scheme": "paramountplus://search?query={}",
+        "logo_url": "https://images.justwatch.com/icon_wide/322151940/s160/paramountplus.jpeg"
+    }
+}
+
+
+def get_streaming_links(media_type, item_id, title):
+    data = get_tmdb(f"{media_type}/{item_id}/watch/providers")
+    if not data:
+        return {k: None for k in STREAMING_CONFIG}
+
+    results = data.get("results", {})
+    region_code = REGION or "US"
+
+    providers_data = results.get(region_code, {})
+    flatrate = providers_data.get("flatrate") or []
+
+    available_providers = {p.get("provider_name") for p in flatrate if p.get("provider_name")}
+
+    links = {}
+    encoded_title = quote_plus(title)
+
+    for app_name, config in STREAMING_CONFIG.items():
+        is_available = any(
+            any(key.lower() in provider.lower() for key in config["keys"])
+            for provider in available_providers
+        )
+
+        if is_available:
+            links[app_name] = config["scheme"].format(encoded_title)
+        else:
+            links[app_name] = None
+
+    return links
 
 
 def get_genres(media_type):
@@ -293,7 +362,7 @@ def generate_background_card(image):
         focal_x_scaled = focal_x * scale_ratio
         
         # Target: Center of right half (75% of screen width)
-        target_center_x = TARGET_WIDTH * 0.75
+        target_center_x = TARGET_WIDTH * 0.72
         
         ideal_x = target_center_x - focal_x_scaled
         
@@ -561,6 +630,87 @@ def add_logo_to_overlay(overlay, media_type, item_id, padding_x, info_position, 
         return False
 
 
+def preload_streaming_logos(scale_factor):
+    """Preload and preprocess all streaming logos once."""
+    global PRELOADED_STREAMING_LOGOS
+    
+    if not SHOW_STREAMING_LOGOS:
+        return
+    
+    logo_size = scale_value(160, scale_factor)
+    radius = scale_value(15, scale_factor)
+    
+    print("Preloading streaming logos...")
+    
+    for service_name, config in STREAMING_CONFIG.items():
+        logo_url = config.get("logo_url")
+        if not logo_url:
+            continue
+        
+        try:
+            logo_image = download_image(logo_url)
+            if not logo_image:
+                continue
+            
+            # Resize logo maintaining aspect ratio
+            logo_image.thumbnail((logo_size, logo_size), Image.LANCZOS)
+            logo_image = logo_image.convert('RGBA')
+
+            # Round corners
+            circle = Image.new('L', (radius * 2, radius * 2), 0)
+            draw = ImageDraw.Draw(circle)
+            draw.ellipse((0, 0, radius * 2, radius * 2), fill=255)
+            alpha = Image.new('L', logo_image.size, 255)
+            w, h = logo_image.size
+            alpha.paste(circle.crop((0, 0, radius, radius)), (0, 0))
+            alpha.paste(circle.crop((0, radius, radius, radius * 2)), (0, h - radius))
+            alpha.paste(circle.crop((radius, 0, radius * 2, radius)), (w - radius, 0))
+            alpha.paste(circle.crop((radius, radius, radius * 2, radius * 2)), (w - radius, h - radius))
+            logo_image.putalpha(alpha)
+            
+            # Store the processed logo
+            PRELOADED_STREAMING_LOGOS[service_name] = logo_image
+            
+        except Exception as e:
+            print(f"Failed to preload {service_name} logo: {e}")
+            continue
+    
+    print(f"Preloaded {len(PRELOADED_STREAMING_LOGOS)} streaming logos")
+
+
+def add_streaming_logos(overlay, streaming_links, position, scale_factor):
+    """Add streaming service logos horizontally using preloaded logos."""
+    if not streaming_links or not SHOW_STREAMING_LOGOS:
+        return 0
+    
+    available_services = [name for name, url in streaming_links.items() if url]
+    if not available_services:
+        return 0
+    
+    logo_spacing = scale_value(15, scale_factor)
+    x_offset = position[0]
+    y_position = position[1]
+    
+    logos_added = 0
+    for service_name in available_services:
+        if service_name not in PRELOADED_STREAMING_LOGOS:
+            continue
+        
+        try:
+            logo_image = PRELOADED_STREAMING_LOGOS[service_name]
+            
+            # Paste logo (already processed with rounded corners)
+            overlay.paste(logo_image, (x_offset, y_position), logo_image)
+            x_offset += logo_image.width + logo_spacing
+            logos_added += 1
+            
+        except Exception as e:
+            print(f"Failed to add {service_name} logo: {e}")
+            continue
+    
+    return logos_added
+
+
 def add_tmdb_branding(overlay, custom_position, scale_factor):
     tmdb_logo_path = os.path.join(os.path.dirname(__file__), "tmdblogo.png")
     if not os.path.exists(tmdb_logo_path):
@@ -592,7 +742,7 @@ def add_tmdb_branding(overlay, custom_position, scale_factor):
         pass
 
 
-def create_media_overlay(item, media_type, genres_map, background_size, scale_factor):
+def create_media_overlay(item, media_type, genres_map, background_size, scale_factor, streaming_links=None):
     overlay = Image.new("RGBA", background_size, (0, 0, 0, 0))
     draw = ImageDraw.Draw(overlay)
     
@@ -604,6 +754,7 @@ def create_media_overlay(item, media_type, genres_map, background_size, scale_fa
     padding_y_logo_to_info = scale_value(100, scale_factor)
     padding_y_info_to_summary = scale_value(50, scale_factor)
     padding_y_summary_to_custom = scale_value(50, scale_factor)
+    padding_y_custom_to_streaming = scale_value(50, scale_factor)
     
     title_position = (scale_value(200, scale_factor), scale_value(520, scale_factor))
     
@@ -630,14 +781,38 @@ def create_media_overlay(item, media_type, genres_map, background_size, scale_fa
     draw_text_with_shadow(draw, info_position, meta_text, font_info)
     draw_text_with_shadow(draw, overview_position, wrapped_overview, font_overview)
     
+    current_y = custom_position[1]
+    
     if SHOW_CUSTOM_TEXT:
-        draw_text_with_shadow(draw, custom_position, CUSTOM_TEXT, font_overview)
-        add_tmdb_branding(overlay, custom_position, scale_factor)
+        draw_text_with_shadow(draw, (padding_x, current_y), CUSTOM_TEXT, font_overview)
+        add_tmdb_branding(overlay, (padding_x, current_y), scale_factor)
+        current_y += scale_value(120, scale_factor)
+    
+    # Add streaming logos section
+    if SHOW_STREAMING_LOGOS and streaming_links:
+        if SHOW_CUSTOM_TEXT:
+            current_y += padding_y_custom_to_streaming
+        available_services = [name for name, url in streaming_links.items() if url]
+        if available_services:
+            logo_x = padding_x
+            logo_y = current_y
+            
+            if SHOW_STREAMING_TEXT:
+                draw_text_with_shadow(draw, (padding_x, current_y), STREAMING_TEXT, font_overview)
+                
+                # Calculate text width to position logos next to text
+                text_bbox = draw.textbbox((0, 0), STREAMING_TEXT, font=font_overview)
+                text_width = text_bbox[2] - text_bbox[0]
+                
+                logo_x = padding_x + text_width + scale_value(25, scale_factor)
+                logo_y = current_y + scale_value(12, scale_factor)
+            
+            add_streaming_logos(overlay, streaming_links, (logo_x, logo_y), scale_factor)
     
     return overlay
 
 
-def create_json_metadata(name, clean_title, image_file, video_file, base_url):
+def create_json_metadata(name, clean_title, image_file, video_file, base_url, streaming_links=None):
     return {
         "location": "TMDB",
         "title": name,
@@ -646,7 +821,8 @@ def create_json_metadata(name, clean_title, image_file, video_file, base_url):
         "url_1080p": f"{base_url}/{clean_title}.mp4" if os.path.exists(video_file) else None,
         "url_4k": f"{base_url}/{clean_title}.mp4" if os.path.exists(video_file) else None,
         "url_1080p_hdr": None,
-        "url_4k_hdr": None
+        "url_4k_hdr": None,
+        "streamingUrls": streaming_links or {k: None for k in STREAMING_CONFIG}
     }
 
 
@@ -674,7 +850,8 @@ def process_media(item, media_type, genres_map):
     base_url = PAGES_GITHUB_URL or "."
     
     if os.path.exists(image_file) and (not GENERATE_VIDEO or os.path.exists(video_file)):
-        json_data = create_json_metadata(name, clean_title, image_file, video_file, base_url)
+        streaming_links = get_streaming_links(media_type, item['id'], name)
+        json_data = create_json_metadata(name, clean_title, image_file, video_file, base_url, streaming_links)
         return clean_title, json_data
 
     try:
@@ -682,9 +859,11 @@ def process_media(item, media_type, genres_map):
         if not source_image:
             return None
         
+        streaming_links = get_streaming_links(media_type, item['id'], name)
+        
         background = generate_background_card(source_image)
         scale_factor = TARGET_HEIGHT / 2160.0
-        overlay = create_media_overlay(item, media_type, genres_map, background.size, scale_factor)
+        overlay = create_media_overlay(item, media_type, genres_map, background.size, scale_factor, streaming_links)
         
         save_final_image(background, overlay, image_file)
         
@@ -694,7 +873,8 @@ def process_media(item, media_type, genres_map):
                 print(f"Video failed: {name}")
 
         print(f"Processed: {name}")
-        json_data = create_json_metadata(name, clean_title, image_file, video_file, base_url)
+        streaming_links = get_streaming_links(media_type, item['id'], name)
+        json_data = create_json_metadata(name, clean_title, image_file, video_file, base_url, streaming_links)
         return clean_title, json_data
 
     except Exception as e:
@@ -765,6 +945,10 @@ def cleanup_old_files(valid_files):
 
 def main():
     setup_environment()
+    
+    # Preload streaming logos once
+    scale_factor = TARGET_HEIGHT / 2160.0
+    preload_streaming_logos(scale_factor)
     
     print("Fetching trending content...")
     

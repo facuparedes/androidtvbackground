@@ -11,13 +11,16 @@
 
 ## Content Settings
 
-| Variable                 | Default           | Description                                      |
-| ------------------------ | ----------------- | ------------------------------------------------ |
-| `TMDB_NUMBER_OF_MOVIES`  | `5`               | Number of trending movies to process             |
-| `TMDB_NUMBER_OF_TVSHOWS` | `5`               | Number of trending TV shows to process           |
-| `MAX_CONTENT_AGE_DAYS`   | `90`              | Maximum age of content in days                   |
-| `TMDB_CUSTOM_TEXT`       | `Now Trending on` | Custom text to display with TMDB logo            |
-| `SHOW_CUSTOM_TEXT`       | `true`            | Set to `false` to hide custom text and TMDB logo |
+| Variable                 | Default           | Description                                             |
+| ------------------------ | ----------------- | ------------------------------------------------------- |
+| `TMDB_NUMBER_OF_MOVIES`  | `5`               | Number of trending movies to process                    |
+| `TMDB_NUMBER_OF_TVSHOWS` | `5`               | Number of trending TV shows to process                  |
+| `MAX_CONTENT_AGE_DAYS`   | `90`              | Maximum age of content in days                          |
+| `TMDB_CUSTOM_TEXT`       | `Now Trending on` | Custom text to display with TMDB logo                   |
+| `SHOW_CUSTOM_TEXT`       | `true`            | Set to `false` to hide custom text and TMDB logo        |
+| `STREAMING_TEXT`         | `Available on`    | Text to display before streaming service logos          |
+| `SHOW_STREAMING_TEXT`    | `true`            | Set to `false` to hide streaming text (only show logos) |
+| `SHOW_STREAMING_LOGOS`   | `true`            | Set to `false` to hide streaming service logos          |
 
 ## Output Settings
 
