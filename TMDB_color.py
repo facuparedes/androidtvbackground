@@ -20,6 +20,7 @@ TMDB_BEARER_TOKEN = os.getenv('TMDB_BEARER_TOKEN')
 TMDB_BASE_URL = os.getenv('TMDB_BASE_URL') or 'https://api.tmdb.org/3'
 PAGES_GITHUB_URL = (os.getenv("PAGES_GITHUB_URL") or "").rstrip('/')
 LANGUAGE = os.getenv("TMDB_LANGUAGE") or "en-US"
+REGION = os.getenv("TMDB_REGION") or ""
 NUMBER_OF_MOVIES = int(os.getenv("TMDB_NUMBER_OF_MOVIES") or "5")
 NUMBER_OF_TVSHOWS = int(os.getenv("TMDB_NUMBER_OF_TVSHOWS") or "5")
 CUSTOM_TEXT = os.getenv("TMDB_CUSTOM_TEXT") or "Now Trending on"
@@ -104,6 +105,8 @@ def setup_environment():
 def get_tmdb(endpoint, params=None):
     params = params or {}
     params['language'] = LANGUAGE
+    if REGION:
+        params['region'] = REGION
     try:
         response = session.get(f"{TMDB_BASE_URL}/{endpoint}", params=params, timeout=10)
         response.raise_for_status()
@@ -772,6 +775,9 @@ def main():
     
     all_movies = get_tmdb('trending/movie/week').get('results', [])[:max_movies]
     all_tv = get_tmdb('trending/tv/week').get('results', [])[:max_tv]
+    
+    if REGION:
+        print(f"Filtering content available in region: {REGION}")
     
     movie_genres = get_genres('movie')
     tv_genres = get_genres('tv')

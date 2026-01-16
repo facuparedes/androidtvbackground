@@ -2,11 +2,12 @@
 
 ## API Configuration
 
-| Variable            | Default                  | Description                     |
-| ------------------- | ------------------------ | ------------------------------- |
-| `TMDB_BEARER_TOKEN` | Required                 | Your TMDB API Bearer token      |
-| `TMDB_BASE_URL`     | `https://api.tmdb.org/3` | TMDB API base URL               |
-| `TMDB_LANGUAGE`     | `en-US`                  | Language for metadata and logos |
+| Variable            | Default                  | Description                                                                       |
+| ------------------- | ------------------------ | --------------------------------------------------------------------------------- |
+| `TMDB_BEARER_TOKEN` | Required                 | Your TMDB API Bearer token                                                        |
+| `TMDB_BASE_URL`     | `https://api.tmdb.org/3` | TMDB API base URL                                                                 |
+| `TMDB_LANGUAGE`     | `en-US`                  | Language for metadata and logos                                                   |
+| `TMDB_REGION`       | Empty                    | ISO 3166-1 region code to filter content by availability (e.g., `AR`, `US`, `ES`) |
 
 ## Content Settings
 
