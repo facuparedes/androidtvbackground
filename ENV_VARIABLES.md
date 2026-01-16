@@ -2,12 +2,13 @@
 
 ## API Configuration
 
-| Variable            | Default                  | Description                                                                       |
-| ------------------- | ------------------------ | --------------------------------------------------------------------------------- |
-| `TMDB_BEARER_TOKEN` | Required                 | Your TMDB API Bearer token                                                        |
-| `TMDB_BASE_URL`     | `https://api.tmdb.org/3` | TMDB API base URL                                                                 |
-| `TMDB_LANGUAGE`     | `en-US`                  | Language for metadata and logos                                                   |
-| `TMDB_REGION`       | Empty                    | ISO 3166-1 region code to filter content by availability (e.g., `AR`, `US`, `ES`) |
+| Variable            | Default                               | Description                                                                       |
+| ------------------- | ------------------------------------- | --------------------------------------------------------------------------------- |
+| `TMDB_BEARER_TOKEN` | Required                              | Your TMDB API Bearer token                                                        |
+| `TMDB_BASE_URL`     | `https://api.tmdb.org/3`              | TMDB API base URL                                                                 |
+| `TMDB_IMG_BASE`     | `https://image.tmdb.org/t/p/original` | Base URL for TMDB images                                                          |
+| `TMDB_LANGUAGE`     | `en-US`                               | Language for metadata and logos                                                   |
+| `TMDB_REGION`       | Empty                                 | ISO 3166-1 region code to filter content by availability (e.g., `AR`, `US`, `ES`) |
 
 ## Content Settings
 
@@ -62,11 +63,12 @@
 
 ## Performance Tuning
 
-| Variable               | Default            | Description                                      |
-| ---------------------- | ------------------ | ------------------------------------------------ |
-| `MAX_WORKERS_DOWNLOAD` | `8`                | Parallel downloads (increase for faster network) |
-| `MAX_WORKERS_PROCESS`  | `4`                | Parallel video processing                        |
-| `FONT_PATH`            | `Roboto-Light.ttf` | Path to font file                                |
+| Variable               | Default              | Description                                      |
+| ---------------------- | -------------------- | ------------------------------------------------ |
+| `MAX_WORKERS_DOWNLOAD` | `8`                  | Parallel downloads (increase for faster network) |
+| `MAX_WORKERS_PROCESS`  | `4`                  | Parallel video processing                        |
+| `FONT_PATH`            | `Roboto-Light.ttf`   | Path to light font file                          |
+| `FONT_PATH_REGULAR`    | `Roboto-Regular.ttf` | Path to regular font file                        |
 
 **Performance Tips:**
 
@@ -81,6 +83,42 @@
 | `EXCLUDED_COUNTRIES` | Empty   | Comma-separated ISO country codes (e.g., `jp,kr`)           |
 | `EXCLUDED_GENRES`    | Empty   | Comma-separated genre names (e.g., `animation,documentary`) |
 | `EXCLUDED_KEYWORDS`  | Empty   | Comma-separated keywords to exclude (e.g., `adult`)         |
+
+## Platform Integrations (Experimental)
+
+### Plex
+
+| Variable       | Default | Description             |
+| -------------- | ------- | ----------------------- |
+| `PLEX_BASEURL` | Empty   | URL of your Plex server |
+| `PLEX_TOKEN`   | Empty   | Your Plex API token     |
+
+### Jellyfin
+
+| Variable           | Default | Description                 |
+| ------------------ | ------- | --------------------------- |
+| `JELLYFIN_BASEURL` | Empty   | URL of your Jellyfin server |
+| `JELLYFIN_TOKEN`   | Empty   | Your Jellyfin API token     |
+| `JELLYFIN_USER_ID` | Empty   | Your Jellyfin User ID       |
+
+### Sonarr & Radarr
+
+| Variable             | Default | Description                               |
+| -------------------- | ------- | ----------------------------------------- |
+| `RADARR_URL`         | Empty   | URL of your Radarr instance               |
+| `SONARR_URL`         | Empty   | URL of your Sonarr instance               |
+| `RADARR_API_KEY`     | Empty   | Your Radarr API key                       |
+| `SONARR_API_KEY`     | Empty   | Your Sonarr API key                       |
+| `DAYS_AHEAD`         | `7`     | Days ahead to look for upcoming releases  |
+| `RADARR_SONARR_LOGO` | Empty   | Logo filename to add as upcoming location |
+
+### Trakt
+
+| Variable               | Default | Description                    |
+| ---------------------- | ------- | ------------------------------ |
+| `TRAKT_RADARR_API_KEY` | Empty   | Radarr API Key for Trakt lists |
+| `TRAKT_USERNAME`       | Empty   | Your Trakt username            |
+| `TRAKT_LISTNAME`       | Empty   | Trakt list name to process     |
 
 ## Example Configuration
 

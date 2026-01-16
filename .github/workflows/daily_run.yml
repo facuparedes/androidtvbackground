@@ -45,12 +45,17 @@ jobs:
           TMDB_BASE_URL: ${{ vars.TMDB_BASE_URL }}
           TMDB_IMG_BASE: ${{ vars.TMDB_IMG_BASE }}
           TMDB_LANGUAGE: ${{ vars.TMDB_LANGUAGE }}
+          TMDB_REGION: ${{ vars.TMDB_REGION }}
 
           # Content Settings
           TMDB_NUMBER_OF_MOVIES: ${{ vars.TMDB_NUMBER_OF_MOVIES }}
           TMDB_NUMBER_OF_TVSHOWS: ${{ vars.TMDB_NUMBER_OF_TVSHOWS }}
           MAX_CONTENT_AGE_DAYS: ${{ vars.MAX_CONTENT_AGE_DAYS }}
           TMDB_CUSTOM_TEXT: ${{ vars.TMDB_CUSTOM_TEXT }}
+          SHOW_CUSTOM_TEXT: ${{ vars.SHOW_CUSTOM_TEXT }}
+          STREAMING_TEXT: ${{ vars.STREAMING_TEXT }}
+          SHOW_STREAMING_TEXT: ${{ vars.SHOW_STREAMING_TEXT }}
+          SHOW_STREAMING_LOGOS: ${{ vars.SHOW_STREAMING_LOGOS }}
 
           # Output Settings
           OUTPUT_DIR: ${{ vars.OUTPUT_DIR }}
@@ -73,15 +78,34 @@ jobs:
           IMAGE_QUALITY: ${{ vars.IMAGE_QUALITY }}
           BLUR_RADIUS: ${{ vars.BLUR_RADIUS }}
           VIGNETTE_STRENGTH: ${{ vars.VIGNETTE_STRENGTH }}
+          MAX_OVERVIEW_LINES: ${{ vars.MAX_OVERVIEW_LINES }}
 
           # Performance Tuning
           MAX_WORKERS_DOWNLOAD: ${{ vars.MAX_WORKERS_DOWNLOAD }}
           MAX_WORKERS_PROCESS: ${{ vars.MAX_WORKERS_PROCESS }}
           FONT_PATH: ${{ vars.FONT_PATH }}
+          FONT_PATH_REGULAR: ${{ vars.FONT_PATH_REGULAR }}
 
           # Content Filtering
           EXCLUDED_COUNTRIES: ${{ vars.EXCLUDED_COUNTRIES }}
           EXCLUDED_KEYWORDS: ${{ vars.EXCLUDED_KEYWORDS }}
+          EXCLUDED_GENRES: ${{ vars.EXCLUDED_GENRES }}
+
+          # Platform Integration (Placeholder for future use)
+          PLEX_BASEURL: ${{ vars.PLEX_BASEURL }}
+          PLEX_TOKEN: ${{ secrets.PLEX_TOKEN }}
+          JELLYFIN_BASEURL: ${{ vars.JELLYFIN_BASEURL }}
+          JELLYFIN_TOKEN: ${{ secrets.JELLYFIN_TOKEN }}
+          JELLYFIN_USER_ID: ${{ vars.JELLYFIN_USER_ID }}
+          RADARR_URL: ${{ vars.RADARR_URL }}
+          SONARR_URL: ${{ vars.SONARR_URL }}
+          RADARR_API_KEY: ${{ secrets.RADARR_API_KEY }}
+          SONARR_API_KEY: ${{ secrets.SONARR_API_KEY }}
+          DAYS_AHEAD: ${{ vars.DAYS_AHEAD }}
+          RADARR_SONARR_LOGO: ${{ vars.RADARR_SONARR_LOGO }}
+          TRAKT_RADARR_API_KEY: ${{ secrets.TRAKT_RADARR_API_KEY }}
+          TRAKT_USERNAME: ${{ vars.TRAKT_USERNAME }}
+          TRAKT_LISTNAME: ${{ vars.TRAKT_LISTNAME }}
         run: python TMDB_color.py
 
       - name: Deploy to GitHub Pages
