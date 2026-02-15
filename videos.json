@@ -1,6 +1,96 @@
 [
     {
         "location": "TMDB",
+        "title": "Marty Supreme",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Marty_Supreme.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Primate",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Primate.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "La asistenta",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_asistenta.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "“Cumbres Borrascosas”",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/_Cumbres_Borrascosas_.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Predator: Badlands",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Predator__Badlands.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": "disneyplus://search?q=Predator%3A+Badlands",
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
         "title": "Hamnet",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Hamnet.jpg",
@@ -19,27 +109,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Los hermanos demolición",
+        "title": "Ruta de escape",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Los_hermanos_demolición.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Los+hermanos+demolici%C3%B3n",
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "La asistenta",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_asistenta.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Ruta_de_escape.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -73,9 +145,9 @@
     },
     {
         "location": "TMDB",
-        "title": "SEND HELP (Enviad ayuda)",
+        "title": "Return to Silent Hill",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/SEND_HELP__Enviad_ayuda_.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Return_to_Silent_Hill.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -91,81 +163,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Iron Lung",
+        "title": "GOAT: Como cabras",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Iron_Lung.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "The Plague",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/The_Plague.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Anaconda",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Anaconda.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "La Meta es el Amor",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_Meta_es_el_Amor.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=La+Meta+es+el+Amor",
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Greenland 2",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Greenland_2.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/GOAT__Como_cabras.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -199,24 +199,6 @@
     },
     {
         "location": "TMDB",
-        "title": "Wonder Man",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Wonder_Man.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": "disneyplus://search?q=Wonder+Man",
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
         "title": "El caballero de los Siete Reinos",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_caballero_de_los_Siete_Reinos.jpg",
@@ -235,9 +217,27 @@
     },
     {
         "location": "TMDB",
-        "title": "Spartacus: La Casa de Ashur",
+        "title": "El arte de parecer Sarah",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Spartacus__La_Casa_de_Ashur.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_arte_de_parecer_Sarah.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": "nflx://search?query=El+arte+de+parecer+Sarah",
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Cross",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Cross.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -245,7 +245,7 @@
         "streamingUrls": {
             "Netflix": null,
             "Disney+": null,
-            "Prime Video": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Cross",
             "HBO Max": null,
             "Apple TV+": null,
             "Paramount+": null
@@ -271,6 +271,24 @@
     },
     {
         "location": "TMDB",
+        "title": "Espadas en arados",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Espadas_en_arados.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
         "title": "Unfamiliar",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Unfamiliar.jpg",
@@ -289,33 +307,15 @@
     },
     {
         "location": "TMDB",
-        "title": "El infiltrado",
+        "title": "Spartacus: La Casa de Ashur",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_infiltrado.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Spartacus__La_Casa_de_Ashur.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
             "Netflix": null,
-            "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=El+infiltrado",
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Los Bridgerton",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Los_Bridgerton.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": "nflx://search?query=Los+Bridgerton",
             "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
@@ -325,15 +325,15 @@
     },
     {
         "location": "TMDB",
-        "title": "El abogado del Lincoln",
+        "title": "Sin esfuerzo no hay ascenso",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_abogado_del_Lincoln.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Sin_esfuerzo_no_hay_ascenso.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": "nflx://search?query=El+abogado+del+Lincoln",
+            "Netflix": null,
             "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
@@ -343,16 +343,16 @@
     },
     {
         "location": "TMDB",
-        "title": "The Beauty",
+        "title": "¿¡Cómo te Atreves!?",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/The_Beauty.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/__Cómo_te_Atreves__.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
             "Netflix": null,
-            "Disney+": "disneyplus://search?q=The+Beauty",
+            "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
             "Apple TV+": null,
