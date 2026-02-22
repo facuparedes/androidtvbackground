@@ -19,9 +19,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Primate",
+        "title": "28 años después: El templo de los huesos",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Primate.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/28_años_después__El_templo_de_los_huesos.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -37,9 +37,27 @@
     },
     {
         "location": "TMDB",
-        "title": "La asistenta",
+        "title": "Hamnet",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_asistenta.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Hamnet.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Sin piedad",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Sin_piedad.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -73,6 +91,24 @@
     },
     {
         "location": "TMDB",
+        "title": "Scream 7",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Scream_7.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
         "title": "Predator: Badlands",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Predator__Badlands.jpg",
@@ -91,27 +127,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Hamnet",
+        "title": "La asistenta",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Hamnet.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Ruta de escape",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Ruta_de_escape.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_asistenta.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -145,9 +163,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Return to Silent Hill",
+        "title": "GOAT: Como cabras",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Return_to_Silent_Hill.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/GOAT__Como_cabras.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -163,9 +181,81 @@
     },
     {
         "location": "TMDB",
-        "title": "GOAT: Como cabras",
+        "title": "El agente nocturno",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/GOAT__Como_cabras.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_agente_nocturno.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": "nflx://search?query=El+agente+nocturno",
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "El caballero de los Siete Reinos",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_caballero_de_los_Siete_Reinos.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": "hbomax://search?q=El+caballero+de+los+Siete+Reinos",
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "56 días",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/56_días.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=56+d%C3%ADas",
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Star Trek: Academia de la Flota Estelar",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Star_Trek__Academia_de_la_Flota_Estelar.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Star+Trek%3A+Academia+de+la+Flota+Estelar",
+            "HBO Max": null,
+            "Apple TV+": "https://tv.apple.com/search?term=Star+Trek%3A+Academia+de+la+Flota+Estelar",
+            "Paramount+": "paramountplus://search?query=Star+Trek%3A+Academia+de+la+Flota+Estelar"
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "El arte de parecer Sarah",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_arte_de_parecer_Sarah.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -199,53 +289,17 @@
     },
     {
         "location": "TMDB",
-        "title": "El caballero de los Siete Reinos",
+        "title": "Stranger Things",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_caballero_de_los_Siete_Reinos.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Stranger_Things.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": null,
+            "Netflix": "nflx://search?query=Stranger+Things",
             "Disney+": null,
             "Prime Video": null,
-            "HBO Max": "hbomax://search?q=El+caballero+de+los+Siete+Reinos",
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "El arte de parecer Sarah",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_arte_de_parecer_Sarah.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": "nflx://search?query=El+arte+de+parecer+Sarah",
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Cross",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Cross.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Cross",
             "HBO Max": null,
             "Apple TV+": null,
             "Paramount+": null
@@ -271,16 +325,16 @@
     },
     {
         "location": "TMDB",
-        "title": "Espadas en arados",
+        "title": "Love Story: John F. Kennedy Jr. y Carolyn Bessette",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Espadas_en_arados.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Love_Story__John_F._Kennedy_Jr._y_Carolyn_Bessette.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
             "Netflix": null,
-            "Disney+": null,
+            "Disney+": "disneyplus://search?q=Love+Story%3A+John+F.+Kennedy+Jr.+y+Carolyn+Bessette",
             "Prime Video": null,
             "HBO Max": null,
             "Apple TV+": null,
@@ -289,71 +343,17 @@
     },
     {
         "location": "TMDB",
-        "title": "Unfamiliar",
+        "title": "The Rookie",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Unfamiliar.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/The_Rookie.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": "nflx://search?query=Unfamiliar",
+            "Netflix": "nflx://search?query=The+Rookie",
             "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Spartacus: La Casa de Ashur",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Spartacus__La_Casa_de_Ashur.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Sin esfuerzo no hay ascenso",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Sin_esfuerzo_no_hay_ascenso.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "¿¡Cómo te Atreves!?",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/__Cómo_te_Atreves__.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=The+Rookie",
             "HBO Max": null,
             "Apple TV+": null,
             "Paramount+": null
