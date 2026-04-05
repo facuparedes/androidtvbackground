@@ -1,6 +1,24 @@
 [
     {
         "location": "TMDB",
+        "title": "Avatar: Fuego y ceniza",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Avatar__Fuego_y_ceniza.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
         "title": "Proyecto Salvación",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Proyecto_Salvación.jpg",
@@ -19,9 +37,27 @@
     },
     {
         "location": "TMDB",
-        "title": "Hoppers",
+        "title": "Ruta de escape",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Hoppers.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Ruta_de_escape.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Ruta+de+escape",
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Super Mario Galaxy la película",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Super_Mario_Galaxy_la_película.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -37,9 +73,27 @@
     },
     {
         "location": "TMDB",
-        "title": "GOAT: Como cabras",
+        "title": "El drama",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/GOAT__Como_cabras.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_drama.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "“Cumbres Borrascosas”",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/_Cumbres_Borrascosas_.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -73,60 +127,6 @@
     },
     {
         "location": "TMDB",
-        "title": "Pretty Lethal",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Pretty_Lethal.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Pretty+Lethal",
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Peaky Blinders: El hombre inmortal",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Peaky_Blinders__El_hombre_inmortal.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": "nflx://search?query=Peaky+Blinders%3A+El+hombre+inmortal",
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Mike y Nick y Nick y Alice",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Mike_y_Nick_y_Nick_y_Alice.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": "disneyplus://search?q=Mike+y+Nick+y+Nick+y+Alice",
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
         "title": "Scream 7",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Scream_7.jpg",
@@ -145,33 +145,15 @@
     },
     {
         "location": "TMDB",
-        "title": "Zeta",
+        "title": "Humint",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Zeta.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Humint.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Zeta",
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Super Mario Galaxy la película",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Super_Mario_Galaxy_la_película.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
+            "Netflix": "nflx://search?query=Humint",
             "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
@@ -199,6 +181,24 @@
     },
     {
         "location": "TMDB",
+        "title": "Mike y Nick y Nick y Alice",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Mike_y_Nick_y_Nick_y_Alice.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": "disneyplus://search?q=Mike+y+Nick+y+Nick+y+Alice",
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
         "title": "INVENCIBLE",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/INVENCIBLE.jpg",
@@ -217,16 +217,70 @@
     },
     {
         "location": "TMDB",
-        "title": "ONE PIECE",
+        "title": "Perros de caza",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/ONE_PIECE.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Perros_de_caza.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": "nflx://search?query=ONE+PIECE",
+            "Netflix": "nflx://search?query=Perros+de+caza",
             "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Besos, Kitty",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Besos__Kitty.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": "nflx://search?query=Besos%2C+Kitty",
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "The Pitt",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/The_Pitt.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": "hbomax://search?q=The+Pitt",
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Paradise",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Paradise.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": "disneyplus://search?q=Paradise",
             "Prime Video": null,
             "HBO Max": null,
             "Apple TV+": null,
@@ -253,33 +307,15 @@
     },
     {
         "location": "TMDB",
-        "title": "Scrubs",
+        "title": "El agente divino",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Scrubs.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_agente_divino.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": null,
-            "Disney+": "disneyplus://search?q=Scrubs",
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Algo terrible está a punto de suceder",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Algo_terrible_está_a_punto_de_suceder.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": "nflx://search?query=Algo+terrible+est%C3%A1+a+punto+de+suceder",
+            "Netflix": "nflx://search?query=El+agente+divino",
             "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
@@ -289,54 +325,18 @@
     },
     {
         "location": "TMDB",
-        "title": "En Busca del Jade",
+        "title": "ONE PIECE",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/En_Busca_del_Jade.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/ONE_PIECE.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": "nflx://search?query=En+Busca+del+Jade",
+            "Netflix": "nflx://search?query=ONE+PIECE",
             "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Paradise",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Paradise.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": "disneyplus://search?q=Paradise",
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "The Pitt",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/The_Pitt.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": "hbomax://search?q=The+Pitt",
             "Apple TV+": null,
             "Paramount+": null
         }
