@@ -37,9 +37,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Avatar: Fuego y ceniza",
+        "title": "La momia de Lee Cronin",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Avatar__Fuego_y_ceniza.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_momia_de_Lee_Cronin.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -73,9 +73,45 @@
     },
     {
         "location": "TMDB",
-        "title": "¡La novia!",
+        "title": "Balls Up: Con un par",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/_La_novia_.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Balls_Up__Con_un_par.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Balls+Up%3A+Con+un+par",
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "La leyenda de Aang: El último Airbender",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_leyenda_de_Aang__El_último_Airbender.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Noche de bodas 2",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Noche_de_bodas_2.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -109,42 +145,6 @@
     },
     {
         "location": "TMDB",
-        "title": "El drama",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_drama.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Ruta de escape",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Ruta_de_escape.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Ruta+de+escape",
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
         "title": "Michael",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Michael.jpg",
@@ -155,24 +155,6 @@
         "streamingUrls": {
             "Netflix": null,
             "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Pizza Movie",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Pizza_Movie.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": "disneyplus://search?q=Pizza+Movie",
             "Prime Video": null,
             "HBO Max": null,
             "Apple TV+": null,
@@ -199,16 +181,34 @@
     },
     {
         "location": "TMDB",
-        "title": "Malcolm: De mal en peor",
+        "title": "Euphoria",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Malcolm__De_mal_en_peor.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Euphoria.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
             "Netflix": null,
-            "Disney+": "disneyplus://search?q=Malcolm%3A+De+mal+en+peor",
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": "hbomax://search?q=Euphoria",
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "No te olvidaré",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/No_te_olvidaré.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
             "Apple TV+": null,
@@ -235,78 +235,6 @@
     },
     {
         "location": "TMDB",
-        "title": "Daredevil: Born Again",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Daredevil__Born_Again.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": "disneyplus://search?q=Daredevil%3A+Born+Again",
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "La corona perfecta",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_corona_perfecta.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Perros de caza",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Perros_de_caza.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": "nflx://search?query=Perros+de+caza",
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Los testamentos",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Los_testamentos.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": "disneyplus://search?q=Los+testamentos",
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
         "title": "The Pitt",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/The_Pitt.jpg",
@@ -325,15 +253,51 @@
     },
     {
         "location": "TMDB",
-        "title": "Errores épicos",
+        "title": "Malcolm: De mal en peor",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Errores_épicos.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Malcolm__De_mal_en_peor.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": "nflx://search?query=Errores+%C3%A9picos",
+            "Netflix": null,
+            "Disney+": "disneyplus://search?q=Malcolm%3A+De+mal+en+peor",
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Daredevil: Born Again",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Daredevil__Born_Again.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": "disneyplus://search?q=Daredevil%3A+Born+Again",
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Bronca",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Bronca.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": "nflx://search?query=Bronca",
             "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
@@ -356,6 +320,42 @@
             "Prime Video": null,
             "HBO Max": null,
             "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "La corona perfecta",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_corona_perfecta.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": "disneyplus://search?q=La+corona+perfecta",
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Margo tiene problemas de dinero",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Margo_tiene_problemas_de_dinero.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": "https://tv.apple.com/search?term=Margo+tiene+problemas+de+dinero",
             "Paramount+": null
         }
     }
