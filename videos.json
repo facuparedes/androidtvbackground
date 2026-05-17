@@ -1,16 +1,16 @@
 [
     {
         "location": "TMDB",
-        "title": "Intercambiados",
+        "title": "Marvel Television presenta The Punisher: One Last Kill",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Intercambiados.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Marvel_Television_presenta_The_Punisher__One_Last_Kill.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": "nflx://search?query=Intercambiados",
-            "Disney+": null,
+            "Netflix": null,
+            "Disney+": "disneyplus://search?q=Marvel+Television+presenta+The+Punisher%3A+One+Last+Kill",
             "Prime Video": null,
             "HBO Max": null,
             "Apple TV+": null,
@@ -22,6 +22,24 @@
         "title": "Proyecto Salvación",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Proyecto_Salvación.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Obsesión",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Obsesión.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -55,63 +73,63 @@
     },
     {
         "location": "TMDB",
-        "title": "Super Mario Galaxy la película",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Super_Mario_Galaxy_la_película.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "El drama",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_drama.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Noche de bodas 2",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Noche_de_bodas_2.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
         "title": "Michael",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Michael.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Criaturas luminosas",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Criaturas_luminosas.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": "nflx://search?query=Criaturas+luminosas",
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Intercambiados",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Intercambiados.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": "nflx://search?query=Intercambiados",
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Super Mario Galaxy la película",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Super_Mario_Galaxy_la_película.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -163,20 +181,20 @@
     },
     {
         "location": "TMDB",
-        "title": "Depredador dominante",
+        "title": "Rancho Dutton",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Depredador_dominante.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Rancho_Dutton.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": "nflx://search?query=Depredador+dominante",
+            "Netflix": null,
             "Disney+": null,
-            "Prime Video": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Rancho+Dutton",
             "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
+            "Apple TV+": "https://tv.apple.com/search?term=Rancho+Dutton",
+            "Paramount+": "paramountplus://search?query=Rancho+Dutton"
         }
     },
     {
@@ -199,27 +217,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Daredevil: Born Again",
+        "title": "Off Campus",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Daredevil__Born_Again.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": "disneyplus://search?q=Daredevil%3A+Born+Again",
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Citadel",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Citadel.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Off_Campus.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -227,7 +227,25 @@
         "streamingUrls": {
             "Netflix": null,
             "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Citadel",
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Off+Campus",
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Berlín y la dama del armiño",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Berlín_y_la_dama_del_armiño.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": "nflx://search?query=Berl%C3%ADn+y+la+dama+del+armi%C3%B1o",
+            "Disney+": null,
+            "Prime Video": null,
             "HBO Max": null,
             "Apple TV+": null,
             "Paramount+": null
@@ -271,35 +289,17 @@
     },
     {
         "location": "TMDB",
-        "title": "Star Wars: Maul - Señor de las sombras",
+        "title": "Good Omens",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Star_Wars__Maul_-_Señor_de_las_sombras.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Good_Omens.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
             "Netflix": null,
-            "Disney+": "disneyplus://search?q=Star+Wars%3A+Maul+-+Se%C3%B1or+de+las+sombras",
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "El fuego de la venganza",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_fuego_de_la_venganza.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": "nflx://search?query=El+fuego+de+la+venganza",
             "Disney+": null,
-            "Prime Video": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Good+Omens",
             "HBO Max": null,
             "Apple TV+": null,
             "Paramount+": null
@@ -307,15 +307,15 @@
     },
     {
         "location": "TMDB",
-        "title": "Leyendas",
+        "title": "Némesis",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Leyendas.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Némesis.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": "nflx://search?query=Leyendas",
+            "Netflix": "nflx://search?query=N%C3%A9mesis",
             "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
@@ -325,37 +325,37 @@
     },
     {
         "location": "TMDB",
-        "title": "La maldición de Widow's Bay",
+        "title": "Los SUPERfrikis",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_maldición_de_Widow_s_Bay.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Los_SUPERfrikis.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": null,
+            "Netflix": "nflx://search?query=Los+SUPERfrikis",
             "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
-            "Apple TV+": "https://tv.apple.com/search?term=La+maldici%C3%B3n+de+Widow%27s+Bay",
+            "Apple TV+": null,
             "Paramount+": null
         }
     },
     {
         "location": "TMDB",
-        "title": "Monarch: El legado de los monstruos",
+        "title": "La corona perfecta",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Monarch__El_legado_de_los_monstruos.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_corona_perfecta.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
             "Netflix": null,
-            "Disney+": null,
+            "Disney+": "disneyplus://search?q=La+corona+perfecta",
             "Prime Video": null,
             "HBO Max": null,
-            "Apple TV+": "https://tv.apple.com/search?term=Monarch%3A+El+legado+de+los+monstruos",
+            "Apple TV+": null,
             "Paramount+": null
         }
     }
