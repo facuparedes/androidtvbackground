@@ -1,45 +1,9 @@
 [
     {
         "location": "TMDB",
-        "title": "Jack Ryan de Tom Clancy: Guerra Encubierta",
+        "title": "Backrooms",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Jack_Ryan_de_Tom_Clancy__Guerra_Encubierta.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Jack+Ryan+de+Tom+Clancy%3A+Guerra+Encubierta",
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "La momia de Lee Cronin",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_momia_de_Lee_Cronin.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Obsesión",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Obsesión.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Backrooms.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -73,9 +37,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Mortal Kombat II",
+        "title": "Obsesión",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Mortal_Kombat_II.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Obsesión.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -109,27 +73,9 @@
     },
     {
         "location": "TMDB",
-        "title": "The Punisher: One Last Kill",
+        "title": "The Mandalorian and Grogu",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/The_Punisher__One_Last_Kill.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": "disneyplus://search?q=The+Punisher%3A+One+Last+Kill",
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Star Wars: The Mandalorian and Grogu",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Star_Wars__The_Mandalorian_and_Grogu.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/The_Mandalorian_and_Grogu.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -145,9 +91,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Normal",
+        "title": "Over Your Dead Body",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Normal.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Over_Your_Dead_Body.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -163,9 +109,63 @@
     },
     {
         "location": "TMDB",
-        "title": "Michael",
+        "title": "Jack Ryan de Tom Clancy: Guerra Encubierta",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Michael.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Jack_Ryan_de_Tom_Clancy__Guerra_Encubierta.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Jack+Ryan+de+Tom+Clancy%3A+Guerra+Encubierta",
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Mortal Kombat II",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Mortal_Kombat_II.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Las damas primero",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Las_damas_primero.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": "nflx://search?query=Las+damas+primero",
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "La momia de Lee Cronin",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_momia_de_Lee_Cronin.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -199,9 +199,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Rancho Dutton",
+        "title": "Spider-Noir",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Rancho_Dutton.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Spider-Noir.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -209,25 +209,7 @@
         "streamingUrls": {
             "Netflix": null,
             "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Rancho+Dutton",
-            "HBO Max": null,
-            "Apple TV+": "https://tv.apple.com/search?term=Rancho+Dutton",
-            "Paramount+": "paramountplus://search?query=Rancho+Dutton"
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "FROM",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/FROM.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Spider-Noir",
             "HBO Max": null,
             "Apple TV+": null,
             "Paramount+": null
@@ -253,33 +235,15 @@
     },
     {
         "location": "TMDB",
-        "title": "The Boroughs: Jubilación rebelde",
+        "title": "FROM",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/The_Boroughs__Jubilación_rebelde.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/FROM.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": "nflx://search?query=The+Boroughs%3A+Jubilaci%C3%B3n+rebelde",
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Berlín y la dama del armiño",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Berlín_y_la_dama_del_armiño.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": "nflx://search?query=Berl%C3%ADn+y+la+dama+del+armi%C3%B1o",
+            "Netflix": null,
             "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
@@ -307,15 +271,51 @@
     },
     {
         "location": "TMDB",
-        "title": "Los SUPERfrikis",
+        "title": "Ciudad de las estrellas",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Los_SUPERfrikis.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Ciudad_de_las_estrellas.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": "nflx://search?query=Los+SUPERfrikis",
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Rick y Morty",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Rick_y_Morty.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": "nflx://search?query=Rick+y+Morty",
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": "hbomax://search?q=Rick+y+Morty",
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "The Boroughs: Jubilación rebelde",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/The_Boroughs__Jubilación_rebelde.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": "nflx://search?query=The+Boroughs%3A+Jubilaci%C3%B3n+rebelde",
             "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
@@ -343,19 +343,19 @@
     },
     {
         "location": "TMDB",
-        "title": "Satisfacción garantizada",
+        "title": "Las cuatro estaciones",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Satisfacción_garantizada.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Las_cuatro_estaciones.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": null,
+            "Netflix": "nflx://search?query=Las+cuatro+estaciones",
             "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
-            "Apple TV+": "https://tv.apple.com/search?term=Satisfacci%C3%B3n+garantizada",
+            "Apple TV+": null,
             "Paramount+": null
         }
     }
