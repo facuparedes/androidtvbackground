@@ -1,9 +1,27 @@
 [
     {
         "location": "TMDB",
-        "title": "Las ovejas detectives",
+        "title": "Enola Holmes 3",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Las_ovejas_detectives.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Enola_Holmes_3.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": "nflx://search?query=Enola+Holmes+3",
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "El diablo viste de Prada 2",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_diablo_viste_de_Prada_2.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -11,7 +29,7 @@
         "streamingUrls": {
             "Netflix": null,
             "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Las+ovejas+detectives",
+            "Prime Video": null,
             "HBO Max": null,
             "Apple TV+": null,
             "Paramount+": null
@@ -55,24 +73,6 @@
     },
     {
         "location": "TMDB",
-        "title": "Supergirl",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Supergirl.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
         "title": "Backrooms",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Backrooms.jpg",
@@ -91,9 +91,9 @@
     },
     {
         "location": "TMDB",
-        "title": "He-Man y los masters del universo",
+        "title": "Supergirl",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/He-Man_y_los_masters_del_universo.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Supergirl.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -102,6 +102,42 @@
             "Netflix": null,
             "Disney+": null,
             "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Minions y monstruos",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Minions_y_monstruos.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Las ovejas detectives",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Las_ovejas_detectives.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Las+ovejas+detectives",
             "HBO Max": null,
             "Apple TV+": null,
             "Paramount+": null
@@ -127,45 +163,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Scary Movie",
+        "title": "Vaiana",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Scary_Movie.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Mensajes de voz para Isabelle",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Mensajes_de_voz_para_Isabelle.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": "nflx://search?query=Mensajes+de+voz+para+Isabelle",
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Minions & Monsters",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Minions___Monsters.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Vaiana.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -199,6 +199,24 @@
     },
     {
         "location": "TMDB",
+        "title": "Silo",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Silo.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": "https://tv.apple.com/search?term=Silo",
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
         "title": "FROM",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/FROM.jpg",
@@ -210,42 +228,6 @@
             "Netflix": null,
             "Disney+": null,
             "Prime Video": "https://www.amazon.com/gp/video/search?phrase=FROM",
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "The Bear",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/The_Bear.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": "disneyplus://search?q=The+Bear",
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Te encontraré",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Te_encontraré.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": "nflx://search?query=Te+encontrar%C3%A9",
-            "Disney+": null,
-            "Prime Video": null,
             "HBO Max": null,
             "Apple TV+": null,
             "Paramount+": null
@@ -271,56 +253,74 @@
     },
     {
         "location": "TMDB",
-        "title": "La Agencia",
+        "title": "X-Men '97",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_Agencia.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/X-Men__97.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
             "Netflix": null,
-            "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=La+Agencia",
-            "HBO Max": null,
-            "Apple TV+": "https://tv.apple.com/search?term=La+Agencia",
-            "Paramount+": "paramountplus://search?query=La+Agencia"
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "La maldición de Widow's Bay",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_maldición_de_Widow_s_Bay.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
+            "Disney+": "disneyplus://search?q=X-Men+%2797",
             "Prime Video": null,
             "HBO Max": null,
-            "Apple TV+": "https://tv.apple.com/search?term=La+maldici%C3%B3n+de+Widow%27s+Bay",
+            "Apple TV+": null,
             "Paramount+": null
         }
     },
     {
         "location": "TMDB",
-        "title": "El chico de la última fila",
+        "title": "El Hombre Vapor",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_chico_de_la_última_fila.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_Hombre_Vapor.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": "nflx://search?query=El+chico+de+la+%C3%BAltima+fila",
+            "Netflix": "nflx://search?query=El+Hombre+Vapor",
             "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
             "Apple TV+": null,
             "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "The Bear",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/The_Bear.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": "disneyplus://search?q=The+Bear",
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Rancho Dutton",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Rancho_Dutton.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Rancho+Dutton",
+            "HBO Max": null,
+            "Apple TV+": "https://tv.apple.com/search?term=Rancho+Dutton",
+            "Paramount+": "paramountplus://search?query=Rancho+Dutton"
         }
     },
     {
@@ -343,18 +343,18 @@
     },
     {
         "location": "TMDB",
-        "title": "Rick y Morty",
+        "title": "Elle",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Rick_y_Morty.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Elle.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": "nflx://search?query=Rick+y+Morty",
+            "Netflix": null,
             "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": "hbomax://search?q=Rick+y+Morty",
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Elle",
+            "HBO Max": null,
             "Apple TV+": null,
             "Paramount+": null
         }
