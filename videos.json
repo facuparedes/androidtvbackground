@@ -19,33 +19,15 @@
     },
     {
         "location": "TMDB",
-        "title": "Supergirl",
+        "title": "La última casa",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Supergirl.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_última_casa.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Posesión infernal. En llamas",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Posesión_infernal._En_llamas.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
+            "Netflix": "nflx://search?query=La+%C3%BAltima+casa",
             "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
@@ -73,15 +55,15 @@
     },
     {
         "location": "TMDB",
-        "title": "La última casa",
+        "title": "Minions & Monsters",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_última_casa.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Minions___Monsters.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": "nflx://search?query=La+%C3%BAltima+casa",
+            "Netflix": null,
             "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
@@ -91,9 +73,9 @@
     },
     {
         "location": "TMDB",
-        "title": "El día de la revelación",
+        "title": "La invitación",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_día_de_la_revelación.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_invitación.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -127,9 +109,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Michael",
+        "title": "El final de Oak Street",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Michael.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_final_de_Oak_Street.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -145,9 +127,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Soulm8te",
+        "title": "Jackass: Lo mejor para el final",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Soulm8te.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Jackass__Lo_mejor_para_el_final.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -163,9 +145,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Scary Movie",
+        "title": "The Furious",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Scary_Movie.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/The_Furious.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -181,87 +163,15 @@
     },
     {
         "location": "TMDB",
-        "title": "Silo",
+        "title": "Supergirl",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Silo.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Supergirl.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
             "Netflix": null,
-            "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Silo",
-            "HBO Max": null,
-            "Apple TV+": "https://tv.apple.com/search?term=Silo",
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Futurama",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Futurama.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": "disneyplus://search?q=Futurama",
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "The Shards",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/The_Shards.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": "disneyplus://search?q=The+Shards",
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Ted Lasso",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Ted_Lasso.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Ted+Lasso",
-            "HBO Max": null,
-            "Apple TV+": "https://tv.apple.com/search?term=Ted+Lasso",
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Gatos callejeros, de Ricky Gervais",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Gatos_callejeros__de_Ricky_Gervais.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": "nflx://search?query=Gatos+callejeros%2C+de+Ricky+Gervais",
             "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
@@ -271,9 +181,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Sterling Point",
+        "title": "Reacher",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Sterling_Point.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Reacher.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -281,7 +191,7 @@
         "streamingUrls": {
             "Netflix": null,
             "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Sterling+Point",
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Reacher",
             "HBO Max": null,
             "Apple TV+": null,
             "Paramount+": null
@@ -307,6 +217,24 @@
     },
     {
         "location": "TMDB",
+        "title": "Silo",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Silo.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Silo",
+            "HBO Max": null,
+            "Apple TV+": "https://tv.apple.com/search?term=Silo",
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
         "title": "Operaciones Especiales: Lioness",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Operaciones_Especiales__Lioness.jpg",
@@ -325,9 +253,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Stuart no consigue salvar el universo",
+        "title": "Ted Lasso",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Stuart_no_consigue_salvar_el_universo.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Ted_Lasso.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -335,17 +263,89 @@
         "streamingUrls": {
             "Netflix": null,
             "Disney+": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Ted+Lasso",
+            "HBO Max": null,
+            "Apple TV+": "https://tv.apple.com/search?term=Ted+Lasso",
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Una tienda para asesinos",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Una_tienda_para_asesinos.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": "disneyplus://search?q=Una+tienda+para+asesinos",
             "Prime Video": null,
-            "HBO Max": "hbomax://search?q=Stuart+no+consigue+salvar+el+universo",
+            "HBO Max": null,
             "Apple TV+": null,
             "Paramount+": null
         }
     },
     {
         "location": "TMDB",
-        "title": "Nueve Místicos",
+        "title": "X-Men '97",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Nueve_Místicos.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/X-Men__97.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": "disneyplus://search?q=X-Men+%2797",
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Rick y Morty",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Rick_y_Morty.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": "nflx://search?query=Rick+y+Morty",
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": "hbomax://search?q=Rick+y+Morty",
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Mi brillante carrera",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Mi_brillante_carrera.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": "nflx://search?query=Mi+brillante+carrera",
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Navy: Investigación criminal",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Navy__Investigación_criminal.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -353,10 +353,10 @@
         "streamingUrls": {
             "Netflix": null,
             "Disney+": null,
-            "Prime Video": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Navy%3A+Investigaci%C3%B3n+criminal",
             "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
+            "Apple TV+": "https://tv.apple.com/search?term=Navy%3A+Investigaci%C3%B3n+criminal",
+            "Paramount+": "paramountplus://search?query=Navy%3A+Investigaci%C3%B3n+criminal"
         }
     }
 ]
