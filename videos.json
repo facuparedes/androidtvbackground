@@ -19,15 +19,15 @@
     },
     {
         "location": "TMDB",
-        "title": "La última casa",
+        "title": "Codigo: Venganza",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_última_casa.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Codigo__Venganza.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": "nflx://search?query=La+%C3%BAltima+casa",
+            "Netflix": null,
             "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
@@ -55,27 +55,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Minions & Monsters",
+        "title": "Toy Story 5",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Minions___Monsters.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "La invitación",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_invitación.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Toy_Story_5.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -109,6 +91,42 @@
     },
     {
         "location": "TMDB",
+        "title": "Insidious: Fuera del más allá",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Insidious__Fuera_del_más_allá.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Minions & Monsters",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Minions___Monsters.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
         "title": "El final de Oak Street",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/El_final_de_Oak_Street.jpg",
@@ -127,9 +145,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Jackass: Lo mejor para el final",
+        "title": "Vengadores: Doomsday",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Jackass__Lo_mejor_para_el_final.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Vengadores__Doomsday.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -145,33 +163,15 @@
     },
     {
         "location": "TMDB",
-        "title": "The Furious",
+        "title": "La última casa",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/The_Furious.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_última_casa.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Supergirl",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Supergirl.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
+            "Netflix": "nflx://search?query=La+%C3%BAltima+casa",
             "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
@@ -199,9 +199,9 @@
     },
     {
         "location": "TMDB",
-        "title": "La casa del dragón",
+        "title": "Linternas",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_casa_del_dragón.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Linternas.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -210,7 +210,7 @@
             "Netflix": null,
             "Disney+": null,
             "Prime Video": null,
-            "HBO Max": "hbomax://search?q=La+casa+del+drag%C3%B3n",
+            "HBO Max": "hbomax://search?q=Linternas",
             "Apple TV+": null,
             "Paramount+": null
         }
@@ -235,9 +235,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Operaciones Especiales: Lioness",
+        "title": "Lucky",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Operaciones_Especiales__Lioness.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Lucky.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -245,10 +245,28 @@
         "streamingUrls": {
             "Netflix": null,
             "Disney+": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Lucky",
+            "HBO Max": null,
+            "Apple TV+": "https://tv.apple.com/search?term=Lucky",
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Outer Banks",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Outer_Banks.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": "nflx://search?query=Outer+Banks",
+            "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
-            "Apple TV+": "https://tv.apple.com/search?term=Operaciones+Especiales%3A+Lioness",
-            "Paramount+": "paramountplus://search?query=Operaciones+Especiales%3A+Lioness"
+            "Apple TV+": null,
+            "Paramount+": null
         }
     },
     {
@@ -271,18 +289,36 @@
     },
     {
         "location": "TMDB",
-        "title": "Una tienda para asesinos",
+        "title": "La casa del dragón",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Una_tienda_para_asesinos.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_casa_del_dragón.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
             "Netflix": null,
-            "Disney+": "disneyplus://search?q=Una+tienda+para+asesinos",
+            "Disney+": null,
             "Prime Video": null,
-            "HBO Max": null,
+            "HBO Max": "hbomax://search?q=La+casa+del+drag%C3%B3n",
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Stuart no consigue salvar el universo",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Stuart_no_consigue_salvar_el_universo.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": "hbomax://search?q=Stuart+no+consigue+salvar+el+universo",
             "Apple TV+": null,
             "Paramount+": null
         }
@@ -307,45 +343,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Rick y Morty",
+        "title": "Operaciones Especiales: Lioness",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Rick_y_Morty.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": "nflx://search?query=Rick+y+Morty",
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": "hbomax://search?q=Rick+y+Morty",
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Mi brillante carrera",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Mi_brillante_carrera.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": "nflx://search?query=Mi+brillante+carrera",
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Navy: Investigación criminal",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Navy__Investigación_criminal.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Operaciones_Especiales__Lioness.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -353,10 +353,10 @@
         "streamingUrls": {
             "Netflix": null,
             "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Navy%3A+Investigaci%C3%B3n+criminal",
+            "Prime Video": null,
             "HBO Max": null,
-            "Apple TV+": "https://tv.apple.com/search?term=Navy%3A+Investigaci%C3%B3n+criminal",
-            "Paramount+": "paramountplus://search?query=Navy%3A+Investigaci%C3%B3n+criminal"
+            "Apple TV+": "https://tv.apple.com/search?term=Operaciones+Especiales%3A+Lioness",
+            "Paramount+": "paramountplus://search?query=Operaciones+Especiales%3A+Lioness"
         }
     }
 ]
