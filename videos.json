@@ -1,15 +1,15 @@
 [
     {
         "location": "TMDB",
-        "title": "Animales",
+        "title": "Hope",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Animales.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Hope.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
         "url_4k_hdr": null,
         "streamingUrls": {
-            "Netflix": "nflx://search?query=Animales",
+            "Netflix": null,
             "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
@@ -19,9 +19,27 @@
     },
     {
         "location": "TMDB",
-        "title": "Hope",
+        "title": "Masterplan",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Hope.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Masterplan.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Masterplan",
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Clayface",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Clayface.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -55,9 +73,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Street Fighter",
+        "title": "Malas manzanas",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Street_Fighter.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Malas_manzanas.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -66,96 +84,6 @@
             "Netflix": null,
             "Disney+": null,
             "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Whalefall",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Whalefall.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Prácticamente magia 2",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Prácticamente_magia_2.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Matchbox: La película",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Matchbox__La_película.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Matchbox%3A+La+pel%C3%ADcula",
-            "HBO Max": null,
-            "Apple TV+": "https://tv.apple.com/search?term=Matchbox%3A+La+pel%C3%ADcula",
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Masterplan",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Masterplan.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Masterplan",
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Link Click",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Link_Click.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Link+Click",
             "HBO Max": null,
             "Apple TV+": null,
             "Paramount+": null
@@ -181,9 +109,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Buddy",
+        "title": "Wildwood: El Bosque Salvaje",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Buddy.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Wildwood__El_Bosque_Salvaje.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -192,6 +120,114 @@
             "Netflix": null,
             "Disney+": null,
             "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Street Fighter",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Street_Fighter.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Vengadores: Doomsday",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Vengadores__Doomsday.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "You Can See Everything",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/You_Can_See_Everything.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Link Click",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Link_Click.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Link+Click",
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Lupin",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Lupin.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": "nflx://search?query=Lupin",
+            "Disney+": null,
+            "Prime Video": null,
+            "HBO Max": null,
+            "Apple TV+": null,
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "LA LISTA FINAL",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/LA_LISTA_FINAL.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=LA+LISTA+FINAL",
             "HBO Max": null,
             "Apple TV+": null,
             "Paramount+": null
@@ -226,7 +262,7 @@
         "url_4k_hdr": null,
         "streamingUrls": {
             "Netflix": null,
-            "Disney+": null,
+            "Disney+": "disneyplus://search?q=VisionQuest",
             "Prime Video": null,
             "HBO Max": null,
             "Apple TV+": null,
@@ -253,60 +289,6 @@
     },
     {
         "location": "TMDB",
-        "title": "Linternas",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Linternas.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": null,
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": "hbomax://search?q=Linternas",
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "Bajo la superficie",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Bajo_la_superficie.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": "nflx://search?query=Bajo+la+superficie",
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "La diplomática",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/La_diplomática.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": "nflx://search?query=La+diplom%C3%A1tica",
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
         "title": "Tierra de mafiosos",
         "author": "TMDB",
         "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Tierra_de_mafiosos.jpg",
@@ -325,27 +307,9 @@
     },
     {
         "location": "TMDB",
-        "title": "Doctor X Mafia in White",
+        "title": "Slow Horses",
         "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Doctor_X_Mafia_in_White.jpg",
-        "url_1080p": null,
-        "url_4k": null,
-        "url_1080p_hdr": null,
-        "url_4k_hdr": null,
-        "streamingUrls": {
-            "Netflix": "nflx://search?query=Doctor+X+Mafia+in+White",
-            "Disney+": null,
-            "Prime Video": null,
-            "HBO Max": null,
-            "Apple TV+": null,
-            "Paramount+": null
-        }
-    },
-    {
-        "location": "TMDB",
-        "title": "South Park",
-        "author": "TMDB",
-        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/South_Park.jpg",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Slow_Horses.jpg",
         "url_1080p": null,
         "url_4k": null,
         "url_1080p_hdr": null,
@@ -353,10 +317,46 @@
         "streamingUrls": {
             "Netflix": null,
             "Disney+": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Slow+Horses",
+            "HBO Max": null,
+            "Apple TV+": "https://tv.apple.com/search?term=Slow+Horses",
+            "Paramount+": null
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Tulsa King",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Tulsa_King.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": null,
+            "Disney+": null,
+            "Prime Video": "https://www.amazon.com/gp/video/search?phrase=Tulsa+King",
+            "HBO Max": null,
+            "Apple TV+": "https://tv.apple.com/search?term=Tulsa+King",
+            "Paramount+": "paramountplus://search?query=Tulsa+King"
+        }
+    },
+    {
+        "location": "TMDB",
+        "title": "Donde termina la máscara",
+        "author": "TMDB",
+        "url_img": "https://cdn.jsdelivr.net/gh/facuparedes/androidtvbackground@files/Donde_termina_la_máscara.jpg",
+        "url_1080p": null,
+        "url_4k": null,
+        "url_1080p_hdr": null,
+        "url_4k_hdr": null,
+        "streamingUrls": {
+            "Netflix": "nflx://search?query=Donde+termina+la+m%C3%A1scara",
+            "Disney+": null,
             "Prime Video": null,
             "HBO Max": null,
-            "Apple TV+": "https://tv.apple.com/search?term=South+Park",
-            "Paramount+": "paramountplus://search?query=South+Park"
+            "Apple TV+": null,
+            "Paramount+": null
         }
     }
 ]
